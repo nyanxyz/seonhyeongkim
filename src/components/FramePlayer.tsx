@@ -11,5 +11,16 @@ export function FramePlayer({ frames, offset = 0, tick, ...props }: Props) {
   const startFrameIndex = ((offset % frameCount) + frameCount) % frameCount;
   const frameIndex = (startFrameIndex + tick) % frameCount;
 
-  return <img src={frames[frameIndex]} {...props} />;
+  return (
+    <>
+      {frames.map((src, index) => (
+        <img
+          key={index}
+          src={src}
+          style={{ display: index === frameIndex ? "block" : "none" }}
+          {...props}
+        />
+      ))}
+    </>
+  );
 }
