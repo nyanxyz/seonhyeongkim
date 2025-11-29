@@ -3,14 +3,19 @@ import { redRunningmanFrames } from "../constants/RedRunningman";
 import { FramePlayer } from "./FramePlayer";
 
 interface Props {
-  defaultValue?: number;
+  value?: number;
+  onValueChange?: (value: number) => void;
 }
 
-export function BPMSlider({ defaultValue = 80 }: Props) {
+export function BPMSlider({ value = 90, onValueChange }: Props) {
+  const fps = 24 * (value / 90);
+
   return (
     <div className="h-46 px-16 flex flex-col space-y-4 pt-[66px]">
       <Slider
-        defaultValue={[defaultValue]}
+        value={[value]}
+        onValueChange={(val) => onValueChange?.(val[0])}
+        min={20}
         max={200}
         step={1}
         className="relative flex items-center select-none touch-none px-[15px] -mx-[15px]"
@@ -21,13 +26,13 @@ export function BPMSlider({ defaultValue = 80 }: Props) {
         <SliderThumb className="flex size-7.5 items-center justify-center outline-none cursor-pointer">
           <FramePlayer
             frames={redRunningmanFrames}
-            fps={24} // red_runningman fps
+            fps={fps}
             className="w-[103px] h-[124px] max-w-fit relative -left-1.5"
           />
         </SliderThumb>
       </Slider>
 
-      <div className="w-full flex justify-between font-antarctica font-bold italic text-2xl px-2.5">
+      <div className="w-full flex justify-between font-antarctica font-bold italic text-[24px] px-2.5 text-black">
         <span>Largo</span>
         <span>Adagio</span>
         <span>Andante</span>

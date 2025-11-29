@@ -12,7 +12,8 @@ export function FramePlayer({ frames, offset = 0, fps = 24, ...props }: Props) {
   const [frameIndex, setFrameIndex] = useState(startFrameIndex);
 
   useEffect(() => {
-    if (frameCount <= 1) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setFrameIndex((prev) => (prev + 1) % frameCount);
 
     const frameDuration = Math.max(1, 1000 / fps);
     const timer = setInterval(() => {
@@ -20,7 +21,7 @@ export function FramePlayer({ frames, offset = 0, fps = 24, ...props }: Props) {
     }, frameDuration);
 
     return () => clearInterval(timer);
-  }, [frameCount, fps]);
+  }, [fps]);
 
   return <img src={frames[frameIndex]} {...props} />;
 }
