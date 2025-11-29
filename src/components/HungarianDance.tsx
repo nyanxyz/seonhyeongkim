@@ -100,48 +100,48 @@ export function HungarianDance() {
             frames={hungarianGirlFrames}
             tick={tick}
             offset={28}
-            className="absolute inset-0 w-[893px] rotate-[71deg]"
+            className="absolute w-[893px] rotate-[71deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={24}
-            className="absolute inset-0 w-[792px] rotate-[58deg]"
+            className="absolute w-[792px] rotate-[58deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={20}
-            className="absolute inset-0 w-[691px] rotate-[45deg]"
+            className="absolute w-[691px] rotate-[45deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={16}
-            className="absolute inset-0 w-[591px] rotate-[33deg]"
+            className="absolute w-[591px] rotate-[33deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={12}
-            className="absolute inset-0 w-[490px] rotate-[21deg]"
+            className="absolute w-[490px] rotate-[21deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={8}
-            className="absolute inset-0 w-[389px] rotate-[9deg]"
+            className="absolute w-[389px] rotate-[9deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={4}
-            className="absolute inset-0 w-[294px] -rotate-[4deg]"
+            className="absolute w-[294px] -rotate-[4deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
-            className="absolute inset-0 w-[188px] -rotate-[16deg]"
+            className="absolute w-[188px] -rotate-[16deg]"
           />
         </div>
 
