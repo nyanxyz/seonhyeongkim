@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Antarctica";
+  src: url("/src/assets/font/Antarctica-Condensed.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Antarctica";
+  src: url("/src/assets/font/Antarctica-CondensedBold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Antarctica";
+  src: url("/src/assets/font/Antarctica-CondBoldIta.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  --font-antarctica: "Antarctica", sans-serif;
+}
