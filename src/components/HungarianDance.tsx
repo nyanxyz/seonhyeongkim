@@ -24,7 +24,7 @@ export function HungarianDance() {
   const [bpm, setBpm] = useState(90);
   const [audioCurrentTime, setCurrentTime] = useState(0);
 
-  const fps = 24 * Math.pow(bpm / 90, 3);
+  const fps = 24 * Math.pow(bpm / 90, 1.3);
   const audioRate = bpm / 90;
   const gradientOpacity = Math.min(Math.max((bpm - 20) / 200, 0), 1);
 
