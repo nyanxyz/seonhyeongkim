@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  brahmsSpinFrames,
-  hungarianGirlFrames,
-  hungarianManFrames,
-  manConductorFrames,
-  runningManFrames,
-} from "../constants/frames";
+import { hungarianGirlFrames } from "../constants/frames";
 import { useTick } from "../hooks/useTick";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
@@ -60,7 +54,7 @@ export function HungarianDance() {
             “Hungarian Dance No. 5” by Fulda Symphony Orchestra is licensed under CC BY.
           </div>
 
-          <FramePlayer
+          {/* <FramePlayer
             frames={brahmsSpinFrames}
             tick={tick}
             className="absolute top-[132px] left-[106px] w-[445px]"
@@ -94,7 +88,7 @@ export function HungarianDance() {
             frames={hungarianManFrames}
             tick={tick}
             className="absolute bottom-[4px] right-[7px] w-[365px]"
-          />
+          /> */}
 
           <FramePlayer
             frames={hungarianGirlFrames}
@@ -102,7 +96,7 @@ export function HungarianDance() {
             offset={28}
             className="absolute w-[893px] rotate-[71deg]"
           />
-          <FramePlayer
+          {/* <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={24}
@@ -142,7 +136,7 @@ export function HungarianDance() {
             frames={hungarianGirlFrames}
             tick={tick}
             className="absolute w-[188px] -rotate-[16deg]"
-          />
+          /> */}
         </div>
 
         <BPMSlider tick={tick} value={bpm} onValueChange={setBpm} />
