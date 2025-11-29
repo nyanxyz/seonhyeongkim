@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 
-export function useTick(fps: number = 24) {
+export function useTick(fps: number) {
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setTick((prev) => prev + 1);
+    const frameDuration = 1000 / fps;
+    let last = performance.now();
+    let handle: number | null = null;
 
-    const frameDuration = Math.max(1, 1000 / fps);
-    const timer = setInterval(() => {
-      setTick((prev) => prev + 1);
-    }, frameDuration);
+    function loop(time: number) {
+      if (time - last >= frameDuration) {
+        last = time;
+        setTick((t) => t + 1);
+      }
+      handle = requestAnimationFrame(loop);
+    }
 
-    return () => clearInterval(timer);
+    handle = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(handle!);
   }, [fps]);
 
   return tick;
