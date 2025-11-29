@@ -1,5 +1,5 @@
 import { Slider, SliderRange, SliderThumb, SliderTrack } from "@radix-ui/react-slider";
-import { redRunningmanFrames } from "../constants/RedRunningman";
+import { redRunningmanFrames } from "../constants/frames";
 import { FramePlayer } from "./FramePlayer";
 
 interface Props {

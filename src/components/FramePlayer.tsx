@@ -23,5 +23,16 @@ export function FramePlayer({ frames, offset = 0, fps = 24, ...props }: Props) {
     return () => clearInterval(timer);
   }, [fps]);
 
-  return <img src={frames[frameIndex]} {...props} />;
+  return (
+    <>
+      {frames.map((frame, index) => (
+        <img
+          key={index}
+          src={frame}
+          style={{ display: index === frameIndex ? "block" : "none" }}
+          {...props}
+        />
+      ))}
+    </>
+  );
 }

@@ -1,13 +1,11 @@
 import { useState } from "react";
-import backgroundGradient from "../assets/background-gradient.png";
-import brahmsFrame from "../assets/brahms_frame/brahms_frame.png";
-import hungarianManShadow from "../assets/hungarian_man_shadow/hungarian_man_shadow.png";
-import runningtrackCircle from "../assets/runningtrack_circle/runningtrack_circle.png";
-import { brahmsSpinFrames } from "../constants/BrahmsSpin";
-import { hungarianGirlFrames } from "../constants/HungarianGirl";
-import { hungarianManFrames } from "../constants/HungarianMan";
-import { manConductorFrames } from "../constants/ManConductor";
-import { runningManFrames } from "../constants/RunningMan";
+import {
+  brahmsSpinFrames,
+  hungarianGirlFrames,
+  hungarianManFrames,
+  manConductorFrames,
+  runningManFrames,
+} from "../constants/frames";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
 import { FramePlayer } from "./FramePlayer";
@@ -40,7 +38,7 @@ export function HungarianDance() {
       <div className="h-screen w-screen flex flex-col overflow-hidden">
         <div className="relative flex-1">
           <img
-            src={backgroundGradient}
+            src="/background-gradient.png"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ opacity: gradientOpacity }}
           />
@@ -64,7 +62,10 @@ export function HungarianDance() {
             fps={fps}
             className="absolute top-[254px] left-[186px] w-[780px]"
           />
-          <img src={brahmsFrame} className="absolute top-[84px] left-[8px] w-[1120px]" />
+          <img
+            src="/brahms_frame/brahms_frame.png"
+            className="absolute top-[84px] left-[8px] w-[1120px]"
+          />
 
           <FramePlayer
             frames={manConductorFrames}
@@ -73,7 +74,7 @@ export function HungarianDance() {
           />
 
           <img
-            src={runningtrackCircle}
+            src="/runningtrack_circle/runningtrack_circle.png"
             className="absolute -bottom-[104px] right-[317px] w-[1024px]"
           />
           <FramePlayer
@@ -83,7 +84,7 @@ export function HungarianDance() {
           />
 
           <img
-            src={hungarianManShadow}
+            src="/hungarian_man_shadow/hungarian_man_shadow.png"
             className="absolute -bottom-[12px] right-[53px] w-[471px]"
           />
           <FramePlayer
