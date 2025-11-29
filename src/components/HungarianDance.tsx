@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  brahmsSpinFrames,
   hungarianGirlFrames,
   hungarianManFrames,
   manConductorFrames,
@@ -60,11 +59,11 @@ export function HungarianDance() {
             “Hungarian Dance No. 5” by Fulda Symphony Orchestra is licensed under CC BY.
           </div>
 
-          <FramePlayer
+          {/* <FramePlayer
             frames={brahmsSpinFrames}
             tick={tick}
             className="absolute top-[132px] left-[106px] w-[445px]"
-          />
+          /> */}
           <img
             src="/brahms_frame/brahms_frame.png"
             className="absolute top-[44px] left-[5px] w-[638px]"
