@@ -1,27 +1,15 @@
-import { useEffect, useState, type ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithoutRef } from "react";
 
 interface Props extends ComponentPropsWithoutRef<"img"> {
   frames: string[];
   offset?: number;
-  fps?: number;
+  tick: number;
 }
 
-export function FramePlayer({ frames, offset = 0, fps = 24, ...props }: Props) {
+export function FramePlayer({ frames, offset = 0, tick, ...props }: Props) {
   const frameCount = frames.length;
   const startFrameIndex = ((offset % frameCount) + frameCount) % frameCount;
-  const [frameIndex, setFrameIndex] = useState(startFrameIndex);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setFrameIndex((prev) => (prev + 1) % frameCount);
-
-    const frameDuration = Math.max(1, 1000 / fps);
-    const timer = setInterval(() => {
-      setFrameIndex((prev) => (prev + 1) % frameCount);
-    }, frameDuration);
-
-    return () => clearInterval(timer);
-  }, [fps]);
+  const frameIndex = (startFrameIndex + tick) % frameCount;
 
   return (
     <>

@@ -6,6 +6,7 @@ import {
   manConductorFrames,
   runningManFrames,
 } from "../constants/frames";
+import { useTick } from "../hooks/useTick";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
 import { FramePlayer } from "./FramePlayer";
@@ -23,9 +24,11 @@ export function HungarianDance() {
   const [bpm, setBpm] = useState(90);
   const [audioCurrentTime, setCurrentTime] = useState(0);
 
-  const fps = 24 * (bpm / 90);
+  const fps = 24 * Math.pow(bpm / 90, 3);
   const audioRate = bpm / 90;
   const gradientOpacity = Math.min(Math.max((bpm - 20) / 200, 0), 1);
+
+  const tick = useTick(fps);
 
   return (
     <>
@@ -59,7 +62,7 @@ export function HungarianDance() {
 
           <FramePlayer
             frames={brahmsSpinFrames}
-            fps={fps}
+            tick={tick}
             className="absolute top-[132px] left-[106px] w-[445px]"
           />
           <img
@@ -69,7 +72,7 @@ export function HungarianDance() {
 
           <FramePlayer
             frames={manConductorFrames}
-            fps={fps}
+            tick={tick}
             className="absolute top-[79px] -left-[734px] w-[1564px]"
           />
 
@@ -79,7 +82,7 @@ export function HungarianDance() {
           />
           <FramePlayer
             frames={runningManFrames}
-            fps={fps}
+            tick={tick}
             className="absolute bottom-[84px] right-[348px] w-[263px]"
           />
 
@@ -89,60 +92,60 @@ export function HungarianDance() {
           />
           <FramePlayer
             frames={hungarianManFrames}
-            fps={fps}
+            tick={tick}
             className="absolute bottom-[4px] right-[7px] w-[365px]"
           />
 
           <FramePlayer
             frames={hungarianGirlFrames}
-            fps={fps}
+            tick={tick}
             offset={28}
             className="absolute inset-0 m-auto w-[893px] rotate-[71deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
-            fps={fps}
+            tick={tick}
             offset={24}
             className="absolute inset-0 m-auto w-[792px] rotate-[58deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
-            fps={fps}
+            tick={tick}
             offset={20}
             className="absolute inset-0 m-auto w-[691px] rotate-[45deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
-            fps={fps}
+            tick={tick}
             offset={16}
             className="absolute inset-0 m-auto w-[591px] rotate-[33deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
-            fps={fps}
+            tick={tick}
             offset={12}
             className="absolute inset-0 m-auto w-[490px] rotate-[21deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
-            fps={fps}
+            tick={tick}
             offset={8}
             className="absolute inset-0 m-auto w-[389px] rotate-[9deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
-            fps={fps}
+            tick={tick}
             offset={4}
             className="absolute inset-0 m-auto w-[294px] -rotate-[4deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
-            fps={fps}
+            tick={tick}
             className="absolute inset-0 m-auto w-[188px] -rotate-[16deg]"
           />
         </div>
 
-        <BPMSlider value={bpm} onValueChange={setBpm} />
+        <BPMSlider tick={tick} value={bpm} onValueChange={setBpm} />
       </div>
     </>
   );

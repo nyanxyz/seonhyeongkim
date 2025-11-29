@@ -3,13 +3,12 @@ import { redRunningmanFrames } from "../constants/frames";
 import { FramePlayer } from "./FramePlayer";
 
 interface Props {
+  tick: number;
   value?: number;
   onValueChange?: (value: number) => void;
 }
 
-export function BPMSlider({ value = 90, onValueChange }: Props) {
-  const fps = 24 * (value / 90);
-
+export function BPMSlider({ tick, value = 90, onValueChange }: Props) {
   return (
     <div className="relative h-[96px] px-[36px] flex flex-col space-y-[8px] pt-[32px] bg-white">
       <Slider
@@ -26,7 +25,7 @@ export function BPMSlider({ value = 90, onValueChange }: Props) {
         <SliderThumb className="flex size-[16px] items-center justify-center outline-none cursor-pointer">
           <FramePlayer
             frames={redRunningmanFrames}
-            fps={fps}
+            tick={tick}
             className="w-[60px] max-w-fit relative -left-[6px]"
           />
         </SliderThumb>
