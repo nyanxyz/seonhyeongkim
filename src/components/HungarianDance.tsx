@@ -43,102 +43,102 @@ export function HungarianDance() {
             style={{ opacity: gradientOpacity }}
           />
 
-          <div className="absolute top-[47px] left-[62px] font-antarctica font-bold text-[64px] text-black">
+          <div className="absolute top-[24px] left-[35px] font-antarctica font-bold text-[32px] text-black">
             {formatTime(audioCurrentTime)}
           </div>
-          <div className="absolute top-[47px] left-0 right-0 mx-auto w-fit font-antarctica font-bold text-[64px] text-black">
+          <div className="absolute top-[24px] left-0 right-0 mx-auto w-fit font-antarctica font-bold text-[32px] text-black">
             HUNGARIAN DANCE NO.5
           </div>
-          <div className="absolute top-[47px] right-[98px] font-antarctica font-bold text-[64px] text-black">
+          <div className="absolute top-[24px] right-[56px] font-antarctica font-bold text-[32px] text-black">
             J. BRAHMS
           </div>
 
-          <div className="absolute bottom-[57px] left-[61px] font-antarctica text-[24px] text-black">
+          <div className="absolute bottom-[30px] left-[35px] font-antarctica text-[13px] text-black">
             “Hungarian Dance No. 5” by Fulda Symphony Orchestra is licensed under CC BY.
           </div>
 
           <FramePlayer
             frames={brahmsSpinFrames}
             fps={fps}
-            className="absolute top-[254px] left-[186px] w-[780px]"
+            className="absolute top-[132px] left-[106px] w-[445px]"
           />
           <img
             src="/brahms_frame/brahms_frame.png"
-            className="absolute top-[84px] left-[8px] w-[1120px]"
+            className="absolute top-[44px] left-[5px] w-[638px]"
           />
 
           <FramePlayer
             frames={manConductorFrames}
             fps={fps}
-            className="absolute top-[152px] -left-[1288px] w-[2743px]"
+            className="absolute top-[79px] -left-[734px] w-[1564px]"
           />
 
           <img
             src="/runningtrack_circle/runningtrack_circle.png"
-            className="absolute -bottom-[104px] right-[317px] w-[1024px]"
+            className="absolute -bottom-[54px] right-[181px] w-[584px]"
           />
           <FramePlayer
             frames={runningManFrames}
             fps={fps}
-            className="absolute bottom-[162px] right-[611px] w-[462px]"
+            className="absolute bottom-[84px] right-[348px] w-[263px]"
           />
 
           <img
             src="/hungarian_man_shadow/hungarian_man_shadow.png"
-            className="absolute -bottom-[12px] right-[53px] w-[471px]"
+            className="absolute -bottom-[6px] right-[30px] w-[269px]"
           />
           <FramePlayer
             frames={hungarianManFrames}
             fps={fps}
-            className="absolute bottom-[8px] right-[13px] w-[640px]"
+            className="absolute bottom-[4px] right-[7px] w-[365px]"
           />
 
           <FramePlayer
             frames={hungarianGirlFrames}
             fps={fps}
             offset={28}
-            className="absolute inset-0 m-auto w-[1566px] rotate-[71deg]"
+            className="absolute inset-0 m-auto w-[893px] rotate-[71deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             fps={fps}
             offset={24}
-            className="absolute inset-0 m-auto w-[1389px] rotate-[58deg]"
+            className="absolute inset-0 m-auto w-[792px] rotate-[58deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             fps={fps}
             offset={20}
-            className="absolute inset-0 m-auto w-[1213px] rotate-[45deg]"
+            className="absolute inset-0 m-auto w-[691px] rotate-[45deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             fps={fps}
             offset={16}
-            className="absolute inset-0 m-auto w-[1036px] rotate-[33deg]"
+            className="absolute inset-0 m-auto w-[591px] rotate-[33deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             fps={fps}
             offset={12}
-            className="absolute inset-0 m-auto w-[860px] rotate-[21deg]"
+            className="absolute inset-0 m-auto w-[490px] rotate-[21deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             fps={fps}
             offset={8}
-            className="absolute inset-0 m-auto w-[683px] rotate-[9deg]"
+            className="absolute inset-0 m-auto w-[389px] rotate-[9deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             fps={fps}
             offset={4}
-            className="absolute inset-0 m-auto w-[507px] -rotate-[4deg]"
+            className="absolute inset-0 m-auto w-[294px] -rotate-[4deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             fps={fps}
-            className="absolute inset-0 m-auto w-[330px] -rotate-[16deg]"
+            className="absolute inset-0 m-auto w-[188px] -rotate-[16deg]"
           />
         </div>
 
