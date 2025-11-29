@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  hungarianGirlFrames,
-  hungarianManFrames,
-  manConductorFrames,
-  runningManFrames,
-} from "../constants/frames";
+import { hungarianGirlFrames, hungarianManFrames, runningManFrames } from "../constants/frames";
 import { useTick } from "../hooks/useTick";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
@@ -69,11 +64,11 @@ export function HungarianDance() {
             className="absolute top-[44px] left-[5px] w-[638px]"
           />
 
-          <FramePlayer
+          {/* <FramePlayer
             frames={manConductorFrames}
             tick={tick}
             className="absolute top-[79px] -left-[734px] w-[1564px]"
-          />
+          /> */}
 
           <img
             src="/runningtrack_circle/runningtrack_circle.png"
