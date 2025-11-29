@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { hungarianGirlFrames } from "../constants/frames";
+import {
+  brahmsSpinFrames,
+  hungarianGirlFrames,
+  hungarianManFrames,
+  manConductorFrames,
+  runningManFrames,
+} from "../constants/frames";
 import { useTick } from "../hooks/useTick";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
@@ -54,7 +60,7 @@ export function HungarianDance() {
             “Hungarian Dance No. 5” by Fulda Symphony Orchestra is licensed under CC BY.
           </div>
 
-          {/* <FramePlayer
+          <FramePlayer
             frames={brahmsSpinFrames}
             tick={tick}
             className="absolute top-[132px] left-[106px] w-[445px]"
@@ -88,54 +94,54 @@ export function HungarianDance() {
             frames={hungarianManFrames}
             tick={tick}
             className="absolute bottom-[4px] right-[7px] w-[365px]"
-          /> */}
+          />
 
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={28}
-            className="absolute w-[893px] rotate-[71deg]"
+            className="absolute inset-0 m-auto w-[893px] rotate-[71deg]"
           />
           {/* <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={24}
-            className="absolute w-[792px] rotate-[58deg]"
+            className="absolute inset-0 m-auto w-[792px] rotate-[58deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={20}
-            className="absolute w-[691px] rotate-[45deg]"
+            className="absolute inset-0 m-auto w-[691px] rotate-[45deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={16}
-            className="absolute w-[591px] rotate-[33deg]"
+            className="absolute inset-0 m-auto w-[591px] rotate-[33deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={12}
-            className="absolute w-[490px] rotate-[21deg]"
+            className="absolute inset-0 m-auto w-[490px] rotate-[21deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={8}
-            className="absolute w-[389px] rotate-[9deg]"
+            className="absolute inset-0 m-auto w-[389px] rotate-[9deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
             offset={4}
-            className="absolute w-[294px] -rotate-[4deg]"
+            className="absolute inset-0 m-auto w-[294px] -rotate-[4deg]"
           />
           <FramePlayer
             frames={hungarianGirlFrames}
             tick={tick}
-            className="absolute w-[188px] -rotate-[16deg]"
+            className="absolute inset-0 m-auto w-[188px] -rotate-[16deg]"
           /> */}
         </div>
 
