@@ -22,6 +22,7 @@ const formatTime = (time: number) => {
 export function HungarianDance() {
   const initRef = useRef(false);
 
+  const [initialized, setInitialized] = useState(false);
   const [bpm, setBpm] = useState(90);
   const [audioCurrentTime, setCurrentTime] = useState(0);
 
@@ -167,6 +168,8 @@ export function HungarianDance() {
       container.addChild(hungarianGirl6);
       container.addChild(hungarianGirl7);
       container.addChild(hungarianGirl8);
+
+      setInitialized(true);
     };
     init();
   }, []);
@@ -201,12 +204,31 @@ export function HungarianDance() {
             “Hungarian Dance No. 5” by Fulda Symphony Orchestra is licensed under CC BY.
           </div>
 
+          <img
+            src="/brahms_frame/brahms_frame.png"
+            className="absolute top-[44px] left-[5px] w-[638px]"
+          />
+          <img
+            src="/runningtrack_circle/runningtrack_circle.png"
+            className="absolute -bottom-[54px] right-[181px] w-[584px]"
+          />
+          <img
+            src="/hungarian_man_shadow/hungarian_man_shadow.png"
+            className="absolute -bottom-[6px] right-[30px] w-[269px]"
+          />
+
           <div ref={containerRef} className="absolute inset-0 w-full h-full">
             {/* canvas */}
           </div>
         </div>
 
         <BPMSlider tick={0} value={bpm} onValueChange={setBpm} />
+
+        {!initialized && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white">
+            <span className="font-antarctica font-bold text-[24px] text-black">Loading...</span>
+          </div>
+        )}
       </div>
     </>
   );
