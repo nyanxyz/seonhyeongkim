@@ -7,7 +7,7 @@ import {
   manConductorFrames,
   runningManFrames,
 } from "../constants/frames";
-import { calculateAnimationSpeed } from "../utils/rate";
+import { calculateAnimationSpeed, calculateAudioRate } from "../utils/rate";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
 
@@ -29,7 +29,7 @@ export function HungarianDance() {
   const [bpm, setBpm] = useState(90);
   const [audioCurrentTime, setCurrentTime] = useState(0);
 
-  const audioRate = bpm / 90;
+  const audioRate = calculateAudioRate(bpm);
   const gradientOpacity = Math.min(Math.max((bpm - 20) / 200, 0), 1);
 
   useEffect(() => {
