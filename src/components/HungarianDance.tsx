@@ -20,7 +20,9 @@ const formatTime = (time: number) => {
 };
 
 export function HungarianDance() {
-  const initRef = useRef(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const appRef = useRef<PIXI.Application | null>(null);
+  const spritesRef = useRef<PIXI.AnimatedSprite[]>([]);
 
   const [initialized, setInitialized] = useState(false);
   const [bpm, setBpm] = useState(90);
@@ -29,16 +31,14 @@ export function HungarianDance() {
   const audioRate = bpm / 90;
   const gradientOpacity = Math.min(Math.max((bpm - 20) / 200, 0), 1);
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     const init = async () => {
-      if (initRef.current) return;
-      initRef.current = true;
-
       const app = new PIXI.Application();
       await app.init({ resizeTo: containerRef.current || window, backgroundAlpha: 0 });
 
+      if (containerRef.current?.hasChildNodes()) {
+        containerRef.current.removeChild(containerRef.current.firstChild!);
+      }
       containerRef.current?.appendChild(app.canvas);
 
       const container = new PIXI.Container();
@@ -169,18 +169,41 @@ export function HungarianDance() {
       container.addChild(hungarianGirl7);
       container.addChild(hungarianGirl8);
 
+      appRef.current = app;
+      spritesRef.current = [
+        brahmsSpin,
+        manConductor,
+        runningMan,
+        hungarianMan,
+        hungarianGirl1,
+        hungarianGirl2,
+        hungarianGirl3,
+        hungarianGirl4,
+        hungarianGirl5,
+        hungarianGirl6,
+        hungarianGirl7,
+        hungarianGirl8,
+      ];
       setInitialized(true);
     };
     init();
   }, []);
 
+  useEffect(() => {
+    spritesRef.current.forEach((sprite) => {
+      sprite.animationSpeed = audioRate;
+    });
+  }, [audioRate]);
+
   return (
     <>
-      <AudioPlayer
-        src="/hungarian_dance.m4a"
-        playbackRate={audioRate}
-        onTimeUpdate={setCurrentTime}
-      />
+      {initialized && (
+        <AudioPlayer
+          src="/hungarian_dance.m4a"
+          playbackRate={audioRate}
+          onTimeUpdate={setCurrentTime}
+        />
+      )}
 
       <div className="h-screen w-screen flex flex-col overflow-hidden">
         <div className="relative flex-1">
