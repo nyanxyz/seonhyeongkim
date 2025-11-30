@@ -1,9 +1,13 @@
-import { useState } from "react";
-import { hungarianGirlFrames, hungarianManFrames, runningManFrames } from "../constants/frames";
-import { useTick } from "../hooks/useTick";
+import * as PIXI from "pixi.js";
+import { useEffect, useRef, useState } from "react";
+import {
+  brahmsSpinFrames,
+  hungarianManFrames,
+  manConductorFrames,
+  runningManFrames,
+} from "../constants/frames";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
-import { FramePlayer } from "./FramePlayer";
 
 const formatTime = (time: number) => {
   const hours = Math.floor(time / 3600);
@@ -15,14 +19,74 @@ const formatTime = (time: number) => {
 };
 
 export function HungarianDance() {
+  const initRef = useRef(false);
+
   const [bpm, setBpm] = useState(90);
   const [audioCurrentTime, setCurrentTime] = useState(0);
 
-  const fps = 24 * Math.pow(bpm / 90, 1.3);
   const audioRate = bpm / 90;
   const gradientOpacity = Math.min(Math.max((bpm - 20) / 200, 0), 1);
 
-  const tick = useTick(fps);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const init = async () => {
+      if (initRef.current) return;
+      initRef.current = true;
+
+      const app = new PIXI.Application();
+      await app.init({ resizeTo: containerRef.current || window, backgroundAlpha: 0 });
+
+      containerRef.current?.appendChild(app.canvas);
+
+      const container = new PIXI.Container();
+      app.stage.addChild(container);
+
+      await PIXI.Assets.load(brahmsSpinFrames);
+      await PIXI.Assets.load(manConductorFrames);
+      await PIXI.Assets.load(runningManFrames);
+      await PIXI.Assets.load(hungarianManFrames);
+
+      const brahmsSpinTextures = brahmsSpinFrames.map((f) => PIXI.Assets.cache.get(f));
+      const manConductorTextures = manConductorFrames.map((f) => PIXI.Assets.cache.get(f));
+      const runningManTextures = runningManFrames.map((f) => PIXI.Assets.cache.get(f));
+      const hungarianManTextures = hungarianManFrames.map((f) => PIXI.Assets.cache.get(f));
+
+      const brahmsSpin = new PIXI.AnimatedSprite(brahmsSpinTextures);
+      brahmsSpin.setSize(445, 593);
+      brahmsSpin.position.set(106, 132);
+      brahmsSpin.animationSpeed = 0.5;
+      brahmsSpin.loop = true;
+      brahmsSpin.play();
+
+      const manConductor = new PIXI.AnimatedSprite(manConductorTextures);
+      manConductor.setSize(1564, 856);
+      manConductor.position.set(-734, 79);
+      manConductor.animationSpeed = 0.5;
+      manConductor.loop = true;
+      manConductor.play();
+
+      const runningMan = new PIXI.AnimatedSprite(runningManTextures);
+      runningMan.setSize(263, 316);
+      runningMan.position.set(app.renderer.width - 263 - 348, app.renderer.height - 316 - 84);
+      runningMan.animationSpeed = 1;
+      runningMan.loop = true;
+      runningMan.play();
+
+      const hungarianMan = new PIXI.AnimatedSprite(hungarianManTextures);
+      hungarianMan.setSize(365, 667); // Set appropriate size
+      hungarianMan.position.set(app.renderer.width - 365 - 7, app.renderer.height - 667 - 4); // Set appropriate position
+      hungarianMan.animationSpeed = 1;
+      hungarianMan.loop = true;
+      hungarianMan.play();
+
+      container.addChild(brahmsSpin);
+      container.addChild(manConductor);
+      container.addChild(runningMan);
+      container.addChild(hungarianMan);
+    };
+    init();
+  }, []);
 
   return (
     <>
@@ -36,7 +100,7 @@ export function HungarianDance() {
         <div className="relative flex-1">
           <img
             src="/background-gradient.png"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full"
             style={{ opacity: gradientOpacity }}
           />
 
@@ -54,92 +118,12 @@ export function HungarianDance() {
             “Hungarian Dance No. 5” by Fulda Symphony Orchestra is licensed under CC BY.
           </div>
 
-          {/* <FramePlayer
-            frames={brahmsSpinFrames}
-            tick={tick}
-            className="absolute top-[132px] left-[106px] w-[445px]"
-          /> */}
-          <img
-            src="/brahms_frame/brahms_frame.png"
-            className="absolute top-[44px] left-[5px] w-[638px]"
-          />
-
-          {/* <FramePlayer
-            frames={manConductorFrames}
-            tick={tick}
-            className="absolute top-[79px] -left-[734px] w-[1564px]"
-          /> */}
-
-          <img
-            src="/runningtrack_circle/runningtrack_circle.png"
-            className="absolute -bottom-[54px] right-[181px] w-[584px]"
-          />
-          <FramePlayer
-            frames={runningManFrames}
-            tick={tick}
-            className="absolute bottom-[84px] right-[348px] w-[263px]"
-          />
-
-          <img
-            src="/hungarian_man_shadow/hungarian_man_shadow.png"
-            className="absolute -bottom-[6px] right-[30px] w-[269px]"
-          />
-          <FramePlayer
-            frames={hungarianManFrames}
-            tick={tick}
-            className="absolute bottom-[4px] right-[7px] w-[365px]"
-          />
-
-          <FramePlayer
-            frames={hungarianGirlFrames}
-            tick={tick}
-            offset={28}
-            className="absolute inset-0 m-auto w-[893px] rotate-[71deg]"
-          />
-          {/* <FramePlayer
-            frames={hungarianGirlFrames}
-            tick={tick}
-            offset={24}
-            className="absolute inset-0 m-auto w-[792px] rotate-[58deg]"
-          />
-          <FramePlayer
-            frames={hungarianGirlFrames}
-            tick={tick}
-            offset={20}
-            className="absolute inset-0 m-auto w-[691px] rotate-[45deg]"
-          />
-          <FramePlayer
-            frames={hungarianGirlFrames}
-            tick={tick}
-            offset={16}
-            className="absolute inset-0 m-auto w-[591px] rotate-[33deg]"
-          />
-          <FramePlayer
-            frames={hungarianGirlFrames}
-            tick={tick}
-            offset={12}
-            className="absolute inset-0 m-auto w-[490px] rotate-[21deg]"
-          />
-          <FramePlayer
-            frames={hungarianGirlFrames}
-            tick={tick}
-            offset={8}
-            className="absolute inset-0 m-auto w-[389px] rotate-[9deg]"
-          />
-          <FramePlayer
-            frames={hungarianGirlFrames}
-            tick={tick}
-            offset={4}
-            className="absolute inset-0 m-auto w-[294px] -rotate-[4deg]"
-          />
-          <FramePlayer
-            frames={hungarianGirlFrames}
-            tick={tick}
-            className="absolute inset-0 m-auto w-[188px] -rotate-[16deg]"
-          /> */}
+          <div ref={containerRef} className="absolute inset-0 w-full h-full">
+            {/* canvas */}
+          </div>
         </div>
 
-        <BPMSlider tick={tick} value={bpm} onValueChange={setBpm} />
+        <BPMSlider tick={0} value={bpm} onValueChange={setBpm} />
       </div>
     </>
   );
