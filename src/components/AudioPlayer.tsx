@@ -4,9 +4,10 @@ interface Props {
   src: string;
   playbackRate?: number;
   onTimeUpdate?: (currentTime: number) => void;
+  onPlay?: () => void;
 }
 
-export function AudioPlayer({ src, playbackRate = 1, onTimeUpdate }: Props) {
+export function AudioPlayer({ src, playbackRate = 1, onTimeUpdate, onPlay }: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -42,5 +43,14 @@ export function AudioPlayer({ src, playbackRate = 1, onTimeUpdate }: Props) {
     audio.playbackRate = playbackRate;
   }, [playbackRate]);
 
-  return <audio ref={audioRef} src={src} autoPlay loop />;
+  return (
+    <audio
+      ref={audioRef}
+      src={src}
+      autoPlay
+      loop
+      onPlay={onPlay}
+      onTimeUpdate={(e) => onTimeUpdate?.((e.target as HTMLAudioElement).currentTime)}
+    />
+  );
 }

@@ -10,24 +10,16 @@ import {
 import { calculateAnimationSpeed, calculateAudioRate } from "../utils/rate";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
-
-const formatTime = (time: number) => {
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  const seconds = Math.floor(time % 60);
-  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(
-    seconds
-  ).padStart(2, "0")}`;
-};
+import { BpmTimer, type BpmTimerHandle } from "./BPMTimer";
 
 export function HungarianDance() {
+  const timerRef = useRef<BpmTimerHandle>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const appRef = useRef<PIXI.Application | null>(null);
   const spritesRef = useRef<PIXI.AnimatedSprite[]>([]);
 
   const [initialized, setInitialized] = useState(false);
   const [bpm, setBpm] = useState(90);
-  const [audioCurrentTime, setCurrentTime] = useState(0);
 
   const audioRate = calculateAudioRate(bpm);
   const gradientOpacity = Math.min(Math.max((bpm - 20) / 200, 0), 1);
@@ -202,7 +194,14 @@ export function HungarianDance() {
         <AudioPlayer
           src="/hungarian_dance.m4a"
           playbackRate={audioRate}
-          onTimeUpdate={setCurrentTime}
+          onTimeUpdate={(currentTime) => {
+            if (currentTime === 0) {
+              timerRef.current?.reset();
+            }
+          }}
+          onPlay={() => {
+            timerRef.current?.start();
+          }}
         />
       )}
 
@@ -215,7 +214,7 @@ export function HungarianDance() {
           />
 
           <div className="absolute top-[24px] left-[35px] font-antarctica font-bold text-[32px] text-black">
-            {formatTime(audioCurrentTime)}
+            <BpmTimer ref={timerRef} bpm={bpm} />
           </div>
           <div className="absolute top-[24px] left-0 right-0 mx-auto w-fit font-antarctica font-bold text-[32px] text-black">
             HUNGARIAN DANCE NO.5
