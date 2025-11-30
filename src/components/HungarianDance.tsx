@@ -92,7 +92,7 @@ export function HungarianDance() {
       hungarianGirl1.position.set(app.renderer.width / 2, app.renderer.height / 2);
       hungarianGirl1.animationSpeed = 1;
       hungarianGirl1.loop = true;
-      hungarianGirl1.play();
+      hungarianGirl1.gotoAndPlay(28);
 
       const hungarianGirl2 = new PIXI.AnimatedSprite(hungarianGirlTextures);
       hungarianGirl2.setSize(792, 1448);
@@ -101,7 +101,7 @@ export function HungarianDance() {
       hungarianGirl2.position.set(app.renderer.width / 2, app.renderer.height / 2);
       hungarianGirl2.animationSpeed = 1;
       hungarianGirl2.loop = true;
-      hungarianGirl2.play();
+      hungarianGirl2.gotoAndPlay(24);
 
       const hungarianGirl3 = new PIXI.AnimatedSprite(hungarianGirlTextures);
       hungarianGirl3.setSize(691, 1263);
@@ -110,7 +110,7 @@ export function HungarianDance() {
       hungarianGirl3.position.set(app.renderer.width / 2, app.renderer.height / 2);
       hungarianGirl3.animationSpeed = 1;
       hungarianGirl3.loop = true;
-      hungarianGirl3.play();
+      hungarianGirl3.gotoAndPlay(20);
 
       const hungarianGirl4 = new PIXI.AnimatedSprite(hungarianGirlTextures);
       hungarianGirl4.setSize(591, 1089);
@@ -119,7 +119,7 @@ export function HungarianDance() {
       hungarianGirl4.position.set(app.renderer.width / 2, app.renderer.height / 2);
       hungarianGirl4.animationSpeed = 1;
       hungarianGirl4.loop = true;
-      hungarianGirl4.play();
+      hungarianGirl4.gotoAndPlay(16);
 
       const hungarianGirl5 = new PIXI.AnimatedSprite(hungarianGirlTextures);
       hungarianGirl5.setSize(490, 903);
@@ -128,7 +128,7 @@ export function HungarianDance() {
       hungarianGirl5.position.set(app.renderer.width / 2, app.renderer.height / 2);
       hungarianGirl5.animationSpeed = 1;
       hungarianGirl5.loop = true;
-      hungarianGirl5.play();
+      hungarianGirl5.gotoAndPlay(12);
 
       const hungarianGirl6 = new PIXI.AnimatedSprite(hungarianGirlTextures);
       hungarianGirl6.setSize(389, 717);
@@ -137,7 +137,7 @@ export function HungarianDance() {
       hungarianGirl6.position.set(app.renderer.width / 2, app.renderer.height / 2);
       hungarianGirl6.animationSpeed = 1;
       hungarianGirl6.loop = true;
-      hungarianGirl6.play();
+      hungarianGirl6.gotoAndPlay(8);
 
       const hungarianGirl7 = new PIXI.AnimatedSprite(hungarianGirlTextures);
       hungarianGirl7.setSize(294, 542);
@@ -146,7 +146,7 @@ export function HungarianDance() {
       hungarianGirl7.position.set(app.renderer.width / 2, app.renderer.height / 2);
       hungarianGirl7.animationSpeed = 1;
       hungarianGirl7.loop = true;
-      hungarianGirl7.play();
+      hungarianGirl7.gotoAndPlay(4);
 
       const hungarianGirl8 = new PIXI.AnimatedSprite(hungarianGirlTextures);
       hungarianGirl8.setSize(188, 347);
