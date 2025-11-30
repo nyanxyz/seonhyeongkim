@@ -16,7 +16,8 @@ export function HungarianDance() {
   const timerRef = useRef<BpmTimerHandle>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const appRef = useRef<PIXI.Application | null>(null);
-  const spritesRef = useRef<PIXI.AnimatedSprite[]>([]);
+  const animatedSpritesRef = useRef<PIXI.AnimatedSprite[]>([]);
+  const firstLoopRef = useRef(true);
 
   const [initialized, setInitialized] = useState(false);
   const [bpm, setBpm] = useState(90);
@@ -38,12 +39,14 @@ export function HungarianDance() {
       app.stage.addChild(container);
 
       await PIXI.Assets.load(brahmsSpinFrames);
+      await PIXI.Assets.load("/brahms_frame/brahms_frame.png");
       await PIXI.Assets.load(manConductorFrames);
       await PIXI.Assets.load(runningManFrames);
       await PIXI.Assets.load(hungarianManFrames);
       await PIXI.Assets.load(hungarianGirlFrames);
 
       const brahmsSpinTextures = brahmsSpinFrames.map((f) => PIXI.Assets.cache.get(f));
+      const brahmsFrameTexture = PIXI.Assets.cache.get("/brahms_frame/brahms_frame.png");
       const manConductorTextures = manConductorFrames.map((f) => PIXI.Assets.cache.get(f));
       const runningManTextures = runningManFrames.map((f) => PIXI.Assets.cache.get(f));
       const hungarianManTextures = hungarianManFrames.map((f) => PIXI.Assets.cache.get(f));
@@ -55,6 +58,10 @@ export function HungarianDance() {
       brahmsSpin.animationSpeed = 0.5;
       brahmsSpin.loop = true;
       brahmsSpin.play();
+
+      const brahmsFrame = new PIXI.Sprite(brahmsFrameTexture);
+      brahmsFrame.setSize(638, 778);
+      brahmsFrame.position.set(5, 44);
 
       const manConductor = new PIXI.AnimatedSprite(manConductorTextures);
       manConductor.setSize(1564, 856);
@@ -150,6 +157,7 @@ export function HungarianDance() {
       hungarianGirl8.play();
 
       container.addChild(brahmsSpin);
+      container.addChild(brahmsFrame);
       container.addChild(manConductor);
       container.addChild(runningMan);
       container.addChild(hungarianMan);
@@ -163,7 +171,7 @@ export function HungarianDance() {
       container.addChild(hungarianGirl8);
 
       appRef.current = app;
-      spritesRef.current = [
+      animatedSpritesRef.current = [
         brahmsSpin,
         manConductor,
         runningMan,
@@ -183,7 +191,7 @@ export function HungarianDance() {
   }, []);
 
   useEffect(() => {
-    spritesRef.current.forEach((sprite) => {
+    animatedSpritesRef.current.forEach((sprite) => {
       sprite.animationSpeed = calculateAnimationSpeed(bpm);
     });
   }, [bpm]);
@@ -195,8 +203,11 @@ export function HungarianDance() {
           src="/hungarian_dance.m4a"
           playbackRate={audioRate}
           onTimeUpdate={(currentTime) => {
-            if (currentTime === 0) {
+            if (currentTime < 1 && !firstLoopRef.current) {
               timerRef.current?.reset();
+            }
+            if (currentTime >= 1) {
+              firstLoopRef.current = false;
             }
           }}
           onPlay={() => {
@@ -227,10 +238,6 @@ export function HungarianDance() {
             “Hungarian Dance No. 5” by Fulda Symphony Orchestra is licensed under CC BY.
           </div>
 
-          <img
-            src="/brahms_frame/brahms_frame.png"
-            className="absolute top-[44px] left-[5px] w-[638px]"
-          />
           <img
             src="/runningtrack_circle/runningtrack_circle.png"
             className="absolute -bottom-[54px] right-[181px] w-[584px]"
