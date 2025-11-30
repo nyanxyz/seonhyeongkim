@@ -2,6 +2,7 @@ import * as PIXI from "pixi.js";
 import { useEffect, useRef, useState } from "react";
 import {
   brahmsSpinFrames,
+  hungarianGirlFrames,
   hungarianManFrames,
   manConductorFrames,
   runningManFrames,
@@ -46,11 +47,13 @@ export function HungarianDance() {
       await PIXI.Assets.load(manConductorFrames);
       await PIXI.Assets.load(runningManFrames);
       await PIXI.Assets.load(hungarianManFrames);
+      await PIXI.Assets.load(hungarianGirlFrames);
 
       const brahmsSpinTextures = brahmsSpinFrames.map((f) => PIXI.Assets.cache.get(f));
       const manConductorTextures = manConductorFrames.map((f) => PIXI.Assets.cache.get(f));
       const runningManTextures = runningManFrames.map((f) => PIXI.Assets.cache.get(f));
       const hungarianManTextures = hungarianManFrames.map((f) => PIXI.Assets.cache.get(f));
+      const hungarianGirlTextures = hungarianGirlFrames.map((f) => PIXI.Assets.cache.get(f));
 
       const brahmsSpin = new PIXI.AnimatedSprite(brahmsSpinTextures);
       brahmsSpin.setSize(445, 593);
@@ -80,10 +83,90 @@ export function HungarianDance() {
       hungarianMan.loop = true;
       hungarianMan.play();
 
+      const hungarianGirl1 = new PIXI.AnimatedSprite(hungarianGirlTextures);
+      hungarianGirl1.setSize(893, 1633);
+      hungarianGirl1.anchor.set(0.5, 0.5);
+      hungarianGirl1.rotation = 71 * (Math.PI / 180);
+      hungarianGirl1.position.set(app.renderer.width / 2, app.renderer.height / 2);
+      hungarianGirl1.animationSpeed = 1;
+      hungarianGirl1.loop = true;
+      hungarianGirl1.play();
+
+      const hungarianGirl2 = new PIXI.AnimatedSprite(hungarianGirlTextures);
+      hungarianGirl2.setSize(792, 1448);
+      hungarianGirl2.anchor.set(0.5, 0.5);
+      hungarianGirl2.rotation = 58 * (Math.PI / 180);
+      hungarianGirl2.position.set(app.renderer.width / 2, app.renderer.height / 2);
+      hungarianGirl2.animationSpeed = 1;
+      hungarianGirl2.loop = true;
+      hungarianGirl2.play();
+
+      const hungarianGirl3 = new PIXI.AnimatedSprite(hungarianGirlTextures);
+      hungarianGirl3.setSize(691, 1263);
+      hungarianGirl3.anchor.set(0.5, 0.5);
+      hungarianGirl3.rotation = 45 * (Math.PI / 180);
+      hungarianGirl3.position.set(app.renderer.width / 2, app.renderer.height / 2);
+      hungarianGirl3.animationSpeed = 1;
+      hungarianGirl3.loop = true;
+      hungarianGirl3.play();
+
+      const hungarianGirl4 = new PIXI.AnimatedSprite(hungarianGirlTextures);
+      hungarianGirl4.setSize(591, 1089);
+      hungarianGirl4.anchor.set(0.5, 0.5);
+      hungarianGirl4.rotation = 33 * (Math.PI / 180);
+      hungarianGirl4.position.set(app.renderer.width / 2, app.renderer.height / 2);
+      hungarianGirl4.animationSpeed = 1;
+      hungarianGirl4.loop = true;
+      hungarianGirl4.play();
+
+      const hungarianGirl5 = new PIXI.AnimatedSprite(hungarianGirlTextures);
+      hungarianGirl5.setSize(490, 903);
+      hungarianGirl5.anchor.set(0.5, 0.5);
+      hungarianGirl5.rotation = 21 * (Math.PI / 180);
+      hungarianGirl5.position.set(app.renderer.width / 2, app.renderer.height / 2);
+      hungarianGirl5.animationSpeed = 1;
+      hungarianGirl5.loop = true;
+      hungarianGirl5.play();
+
+      const hungarianGirl6 = new PIXI.AnimatedSprite(hungarianGirlTextures);
+      hungarianGirl6.setSize(389, 717);
+      hungarianGirl6.anchor.set(0.5, 0.5);
+      hungarianGirl6.rotation = 9 * (Math.PI / 180);
+      hungarianGirl6.position.set(app.renderer.width / 2, app.renderer.height / 2);
+      hungarianGirl6.animationSpeed = 1;
+      hungarianGirl6.loop = true;
+      hungarianGirl6.play();
+
+      const hungarianGirl7 = new PIXI.AnimatedSprite(hungarianGirlTextures);
+      hungarianGirl7.setSize(294, 542);
+      hungarianGirl7.anchor.set(0.5, 0.5);
+      hungarianGirl7.rotation = -4 * (Math.PI / 180);
+      hungarianGirl7.position.set(app.renderer.width / 2, app.renderer.height / 2);
+      hungarianGirl7.animationSpeed = 1;
+      hungarianGirl7.loop = true;
+      hungarianGirl7.play();
+
+      const hungarianGirl8 = new PIXI.AnimatedSprite(hungarianGirlTextures);
+      hungarianGirl8.setSize(188, 347);
+      hungarianGirl8.anchor.set(0.5, 0.5);
+      hungarianGirl8.rotation = -16 * (Math.PI / 180);
+      hungarianGirl8.position.set(app.renderer.width / 2, app.renderer.height / 2);
+      hungarianGirl8.animationSpeed = 1;
+      hungarianGirl8.loop = true;
+      hungarianGirl8.play();
+
       container.addChild(brahmsSpin);
       container.addChild(manConductor);
       container.addChild(runningMan);
       container.addChild(hungarianMan);
+      container.addChild(hungarianGirl1);
+      container.addChild(hungarianGirl2);
+      container.addChild(hungarianGirl3);
+      container.addChild(hungarianGirl4);
+      container.addChild(hungarianGirl5);
+      container.addChild(hungarianGirl6);
+      container.addChild(hungarianGirl7);
+      container.addChild(hungarianGirl8);
     };
     init();
   }, []);
