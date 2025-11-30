@@ -7,6 +7,7 @@ import {
   manConductorFrames,
   runningManFrames,
 } from "../constants/frames";
+import { calculateAnimationSpeed } from "../utils/rate";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
 
@@ -191,9 +192,9 @@ export function HungarianDance() {
 
   useEffect(() => {
     spritesRef.current.forEach((sprite) => {
-      sprite.animationSpeed = audioRate;
+      sprite.animationSpeed = calculateAnimationSpeed(bpm);
     });
-  }, [audioRate]);
+  }, [bpm]);
 
   return (
     <>
@@ -245,7 +246,7 @@ export function HungarianDance() {
           </div>
         </div>
 
-        <BPMSlider tick={0} value={bpm} onValueChange={setBpm} />
+        <BPMSlider value={bpm} onValueChange={setBpm} />
 
         {!initialized && (
           <div className="absolute inset-0 flex items-center justify-center bg-white">
