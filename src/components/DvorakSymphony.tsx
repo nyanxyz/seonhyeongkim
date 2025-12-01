@@ -58,6 +58,9 @@ export function DvorakSymphony() {
       const landscape = new PIXI.AnimatedSprite(landscapeTextures);
       landscape.setSize(632 * 0.85, 400 * 0.85);
       landscape.position.set(app.renderer.width - 632 * 0.85 - 63, 130);
+      landscape.animationSpeed = 0.5;
+      landscape.loop = true;
+      landscape.play();
 
       const frame = new PIXI.Sprite(frameTexture);
       frame.setSize(756 * 0.85, 756 * 0.85);
@@ -194,6 +197,7 @@ export function DvorakSymphony() {
       appRef.current = app;
       animatedSpritesRef.current = [
         runningMan,
+        landscape,
         oxTrack,
         stopwatch,
         clock,
