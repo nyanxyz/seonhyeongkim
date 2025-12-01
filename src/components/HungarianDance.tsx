@@ -55,7 +55,7 @@ export function HungarianDance() {
       const brahmsSpin = new PIXI.AnimatedSprite(brahmsSpinTextures);
       brahmsSpin.setSize(445, 593);
       brahmsSpin.position.set(106, 132);
-      brahmsSpin.animationSpeed = 0.5;
+      brahmsSpin.animationSpeed = 1;
       brahmsSpin.loop = true;
       brahmsSpin.play();
 
@@ -66,7 +66,7 @@ export function HungarianDance() {
       const manConductor = new PIXI.AnimatedSprite(manConductorTextures);
       manConductor.setSize(1564, 856);
       manConductor.position.set(-734, 79);
-      manConductor.animationSpeed = 0.5;
+      manConductor.animationSpeed = 1;
       manConductor.loop = true;
       manConductor.play();
 
@@ -188,6 +188,12 @@ export function HungarianDance() {
       setInitialized(true);
     };
     init();
+
+    return () => {
+      appRef.current?.destroy(true);
+      appRef.current = null;
+      animatedSpritesRef.current = [];
+    };
   }, []);
 
   useEffect(() => {

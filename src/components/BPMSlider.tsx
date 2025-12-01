@@ -63,7 +63,7 @@ export function BPMSlider({ value = 90, onValueChange }: Props) {
         </SliderThumb>
       </Slider>
 
-      <div className="w-full flex justify-between font-antarctica font-bold italic text-[13px] px-[5px] text-black">
+      <div className="w-full flex justify-between font-antarctica font-bold italic text-[17px] px-[5px] text-black">
         <span>Largo</span>
         <span>Adagio</span>
         <span>Andante</span>

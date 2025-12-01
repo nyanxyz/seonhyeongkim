@@ -1,3 +1,5 @@
+// 01 - Hungarian Dance
+
 export const brahmsSpinFrames = Array.from({ length: 141 }, (_, i) => {
   const frameNumber = i.toString().padStart(3, "0");
   return `/brahms_spin/brahms_spin${frameNumber}.png`;
@@ -26,4 +28,11 @@ export const redRunningmanFrames = Array.from({ length: 28 }, (_, i) => {
 export const runningManFrames = Array.from({ length: 28 }, (_, i) => {
   const frameNumber = i.toString().padStart(2, "0");
   return `/running_man/running_man${frameNumber}.png`;
+});
+
+// 02 - Tchaikovsky Symphony
+
+export const tchaiFrames = Array.from({ length: 48 }, (_, i) => {
+  const frameNumber = i.toString().padStart(2, "0");
+  return `/tchai/tchai${frameNumber}.png`;
 });
