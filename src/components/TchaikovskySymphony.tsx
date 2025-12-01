@@ -244,6 +244,7 @@ export function TchaikovskySymphony() {
       appRef.current?.destroy(true);
       appRef.current = null;
       animatedSpritesRef.current = [];
+      PIXI.Assets.reset();
     };
   }, []);
 

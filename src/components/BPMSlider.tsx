@@ -18,6 +18,9 @@ export function BPMSlider({ value = 90, onValueChange }: Props) {
       const app = new PIXI.Application();
       await app.init({ width: 60, height: 72, backgroundAlpha: 0 });
 
+      if (containerRef.current?.hasChildNodes()) {
+        containerRef.current.removeChild(containerRef.current.firstChild!);
+      }
       containerRef.current?.appendChild(app.canvas);
 
       const container = new PIXI.Container();
@@ -29,7 +32,7 @@ export function BPMSlider({ value = 90, onValueChange }: Props) {
       const redRunningman = new PIXI.AnimatedSprite(redRunningmanTextures);
       redRunningman.setSize(60, 72);
       redRunningman.position.set(0, 0);
-      redRunningman.animationSpeed = 1;
+      redRunningman.animationSpeed = 0.5;
       redRunningman.loop = true;
       redRunningman.play();
 
