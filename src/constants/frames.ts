@@ -36,3 +36,33 @@ export const tchaiFrames = Array.from({ length: 48 }, (_, i) => {
   const frameNumber = i.toString().padStart(2, "0");
   return `/tchai/tchai${frameNumber}.png`;
 });
+
+export const heartsFrames = Array.from({ length: 24 }, (_, i) => {
+  const frameNumber = i.toString().padStart(5, "0");
+  return `/hearts/hearts.${frameNumber}.png`;
+});
+
+export const trumpetManFrames = Array.from({ length: 225 }, (_, i) => {
+  const frameNumber = i.toString().padStart(5, "0");
+  return `/trumpet_man_easing/trumpet_man_easing.${frameNumber}.png`;
+});
+
+export const clockFrames = Array.from({ length: 72 }, (_, i) => {
+  const frameNumber = i.toString().padStart(5, "0");
+  return `/clock/clock.${frameNumber}.png`;
+});
+
+export const runnerFrames = Array.from({ length: 100 }, (_, i) => {
+  const frameNumber = i.toString().padStart(5, "0");
+  return `/runner/runner.${frameNumber}.png`;
+});
+
+export const violinFrames = Array.from({ length: 25 }, (_, i) => {
+  const frameNumber = i.toString().padStart(5, "0");
+  return `/violin/violin.${frameNumber}.png`;
+});
+
+export const womanConductorFrames = Array.from({ length: 24 }, (_, i) => {
+  const frameNumber = i.toString().padStart(2, "0");
+  return `/conductor2_loop/conductor2_loop${frameNumber}.png`;
+});

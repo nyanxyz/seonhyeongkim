@@ -1,6 +1,14 @@
 import * as PIXI from "pixi.js";
 import { useEffect, useRef, useState } from "react";
-import { tchaiFrames } from "../constants/frames";
+import {
+  clockFrames,
+  heartsFrames,
+  runnerFrames,
+  tchaiFrames,
+  trumpetManFrames,
+  violinFrames,
+  womanConductorFrames,
+} from "../constants/frames";
 import { calculateAnimationSpeed, calculateAudioRate } from "../utils/rate";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
@@ -33,25 +41,201 @@ export function TchaikovskySymphony() {
       app.stage.addChild(container);
 
       await PIXI.Assets.load(tchaiFrames);
+      await PIXI.Assets.load(heartsFrames);
+      await PIXI.Assets.load("/track/track.png");
+      await PIXI.Assets.load(trumpetManFrames);
+      await PIXI.Assets.load(clockFrames);
+      await PIXI.Assets.load(runnerFrames);
+      await PIXI.Assets.load(violinFrames);
+      await PIXI.Assets.load(womanConductorFrames);
 
       const tchaiTextures = tchaiFrames.map((f) => PIXI.Assets.cache.get(f));
+      const heartsTextures = heartsFrames.map((f) => PIXI.Assets.cache.get(f));
+      const trackTexture = PIXI.Assets.cache.get("/track/track.png");
+      const trumpetManTextures = trumpetManFrames.map((f) => PIXI.Assets.cache.get(f));
+      const clockTextures = clockFrames.map((f) => PIXI.Assets.cache.get(f));
+      const runnerTextures = runnerFrames.map((f) => PIXI.Assets.cache.get(f));
+      const violinTextures = violinFrames.map((f) => PIXI.Assets.cache.get(f));
+      const womanConductorTextures = womanConductorFrames.map((f) => PIXI.Assets.cache.get(f));
 
       const tchai = new PIXI.AnimatedSprite(tchaiTextures);
-      tchai.setSize(667, 858);
-      tchai.position.set(-70, 149);
-      tchai.animationSpeed = 1;
+      tchai.setSize(644, 828);
+      tchai.position.set(-55, 158);
+      tchai.animationSpeed = 0.5;
       tchai.loop = true;
       tchai.play();
 
       const mask = new PIXI.Graphics();
-      mask.rect(135, 149, 318, 552).fill(0xffffff);
+      mask.rect(135, 149, 318, 590).fill(0xffffff);
       container.addChild(mask);
       tchai.mask = mask;
 
+      const hearts = new PIXI.AnimatedSprite(heartsTextures);
+      hearts.setSize(107, 128);
+      hearts.position.set(235, 535);
+      hearts.animationSpeed = 0.5;
+      hearts.loop = true;
+      hearts.play();
+
+      const track = new PIXI.Sprite(trackTexture);
+      track.setSize(464, 766);
+      track.position.set(56, 67);
+
+      const trumpetMan = new PIXI.AnimatedSprite(trumpetManTextures);
+      trumpetMan.setSize(307, 517);
+      trumpetMan.position.set(544, 84);
+      trumpetMan.animationSpeed = 0.5;
+      trumpetMan.loop = true;
+      trumpetMan.play();
+
+      const clock = new PIXI.AnimatedSprite(clockTextures);
+      clock.setSize(277, 374);
+      clock.position.set(app.renderer.width - 277 - 551, 73);
+      clock.animationSpeed = 0.5;
+      clock.loop = true;
+      clock.play();
+
+      const runner = new PIXI.AnimatedSprite(runnerTextures);
+      runner.setSize(469, 647);
+      runner.position.set(0, 85);
+      runner.animationSpeed = 0.5;
+      runner.loop = true;
+      runner.play();
+
+      const violin = new PIXI.AnimatedSprite(violinTextures);
+      violin.setSize(721, 413);
+      violin.position.set(app.renderer.width - 721 + 128, 2);
+      violin.animationSpeed = 0.5;
+      violin.loop = true;
+      violin.play();
+
+      const womanConductor1 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor1.setSize(1080, 1872);
+      womanConductor1.scale.set(0.2);
+      womanConductor1.anchor.set(0, 1);
+      womanConductor1.position.set(121, app.renderer.height + 132);
+      womanConductor1.animationSpeed = 0.5;
+      womanConductor1.loop = true;
+      womanConductor1.play();
+
+      const womanConductor2 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor2.setSize(1080, 1872);
+      womanConductor2.scale.set(0.26);
+      womanConductor2.anchor.set(0, 1);
+      womanConductor2.position.set(214, app.renderer.height + 150);
+      womanConductor2.animationSpeed = 0.5;
+      womanConductor2.loop = true;
+      womanConductor2.gotoAndPlay(1);
+
+      const womanConductor3 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor3.setSize(1080, 1872);
+      womanConductor3.scale.set(0.32);
+      womanConductor3.anchor.set(0, 1);
+      womanConductor3.position.set(310, app.renderer.height + 157);
+      womanConductor3.animationSpeed = 0.5;
+      womanConductor3.loop = true;
+      womanConductor3.gotoAndPlay(2);
+
+      const womanConductor4 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor4.setSize(1080, 1872);
+      womanConductor4.scale.set(0.38);
+      womanConductor4.anchor.set(0, 1);
+      womanConductor4.position.set(407, app.renderer.height + 167);
+      womanConductor4.animationSpeed = 0.5;
+      womanConductor4.loop = true;
+      womanConductor4.gotoAndPlay(3);
+
+      const womanConductor5 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor5.setSize(1080, 1872);
+      womanConductor5.scale.set(0.44);
+      womanConductor5.anchor.set(0, 1);
+      womanConductor5.position.set(503, app.renderer.height + 188);
+      womanConductor5.animationSpeed = 0.5;
+      womanConductor5.loop = true;
+      womanConductor5.gotoAndPlay(4);
+
+      const womanConductor6 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor6.setSize(1080, 1872);
+      womanConductor6.scale.set(0.5);
+      womanConductor6.anchor.set(0, 1);
+      womanConductor6.position.set(600, app.renderer.height + 209);
+      womanConductor6.animationSpeed = 0.5;
+      womanConductor6.loop = true;
+      womanConductor6.gotoAndPlay(5);
+
+      const womanConductor7 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor7.setSize(1080, 1872);
+      womanConductor7.scale.set(0.56);
+      womanConductor7.anchor.set(0, 1);
+      womanConductor7.position.set(710, app.renderer.height + 220);
+      womanConductor7.animationSpeed = 0.5;
+      womanConductor7.loop = true;
+      womanConductor7.gotoAndPlay(6);
+
+      const womanConductor8 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor8.setSize(1080, 1872);
+      womanConductor8.scale.set(0.62);
+      womanConductor8.anchor.set(0, 1);
+      womanConductor8.position.set(820, app.renderer.height + 235);
+      womanConductor8.animationSpeed = 0.5;
+      womanConductor8.loop = true;
+      womanConductor8.gotoAndPlay(7);
+
+      const womanConductor9 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor9.setSize(1080, 1872);
+      womanConductor9.scale.set(0.68);
+      womanConductor9.anchor.set(0, 1);
+      womanConductor9.position.set(930, app.renderer.height + 250);
+      womanConductor9.animationSpeed = 0.5;
+      womanConductor9.loop = true;
+      womanConductor9.gotoAndPlay(8);
+
+      const womanConductor10 = new PIXI.AnimatedSprite(womanConductorTextures);
+      womanConductor10.setSize(1080, 1872);
+      womanConductor10.scale.set(0.74);
+      womanConductor10.anchor.set(0, 1);
+      womanConductor10.position.set(1040, app.renderer.height + 264);
+      womanConductor10.animationSpeed = 0.5;
+      womanConductor10.loop = true;
+      womanConductor10.gotoAndPlay(9);
+
       container.addChild(tchai);
+      container.addChild(hearts);
+      container.addChild(trumpetMan);
+      container.addChild(track);
+      container.addChild(clock);
+      container.addChild(runner);
+      container.addChild(violin);
+      container.addChild(womanConductor1);
+      container.addChild(womanConductor2);
+      container.addChild(womanConductor3);
+      container.addChild(womanConductor4);
+      container.addChild(womanConductor5);
+      container.addChild(womanConductor6);
+      container.addChild(womanConductor7);
+      container.addChild(womanConductor8);
+      container.addChild(womanConductor9);
+      container.addChild(womanConductor10);
 
       appRef.current = app;
-      animatedSpritesRef.current = [tchai];
+      animatedSpritesRef.current = [
+        tchai,
+        hearts,
+        trumpetMan,
+        clock,
+        runner,
+        violin,
+        womanConductor1,
+        womanConductor2,
+        womanConductor3,
+        womanConductor4,
+        womanConductor5,
+        womanConductor6,
+        womanConductor7,
+        womanConductor8,
+        womanConductor9,
+        womanConductor10,
+      ];
       setInitialized(true);
     };
     init();

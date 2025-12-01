@@ -55,7 +55,7 @@ export function HungarianDance() {
       const brahmsSpin = new PIXI.AnimatedSprite(brahmsSpinTextures);
       brahmsSpin.setSize(445, 593);
       brahmsSpin.position.set(106, 132);
-      brahmsSpin.animationSpeed = 1;
+      brahmsSpin.animationSpeed = 0.5;
       brahmsSpin.loop = true;
       brahmsSpin.play();
 
@@ -66,21 +66,21 @@ export function HungarianDance() {
       const manConductor = new PIXI.AnimatedSprite(manConductorTextures);
       manConductor.setSize(1564, 856);
       manConductor.position.set(-734, 79);
-      manConductor.animationSpeed = 1;
+      manConductor.animationSpeed = 0.5;
       manConductor.loop = true;
       manConductor.play();
 
       const runningMan = new PIXI.AnimatedSprite(runningManTextures);
       runningMan.setSize(263, 316);
       runningMan.position.set(app.renderer.width - 263 - 348, app.renderer.height - 316 - 84);
-      runningMan.animationSpeed = 1;
+      runningMan.animationSpeed = 0.5;
       runningMan.loop = true;
       runningMan.play();
 
       const hungarianMan = new PIXI.AnimatedSprite(hungarianManTextures);
       hungarianMan.setSize(365, 667); // Set appropriate size
       hungarianMan.position.set(app.renderer.width - 365 - 7, app.renderer.height - 667 - 4); // Set appropriate position
-      hungarianMan.animationSpeed = 1;
+      hungarianMan.animationSpeed = 0.5;
       hungarianMan.loop = true;
       hungarianMan.play();
 
@@ -89,7 +89,7 @@ export function HungarianDance() {
       hungarianGirl1.anchor.set(0.5, 0.5);
       hungarianGirl1.rotation = 71 * (Math.PI / 180);
       hungarianGirl1.position.set(app.renderer.width / 2, app.renderer.height / 2);
-      hungarianGirl1.animationSpeed = 1;
+      hungarianGirl1.animationSpeed = 0.5;
       hungarianGirl1.loop = true;
       hungarianGirl1.gotoAndPlay(28);
 
@@ -98,7 +98,7 @@ export function HungarianDance() {
       hungarianGirl2.anchor.set(0.5, 0.5);
       hungarianGirl2.rotation = 58 * (Math.PI / 180);
       hungarianGirl2.position.set(app.renderer.width / 2, app.renderer.height / 2);
-      hungarianGirl2.animationSpeed = 1;
+      hungarianGirl2.animationSpeed = 0.5;
       hungarianGirl2.loop = true;
       hungarianGirl2.gotoAndPlay(24);
 
@@ -107,7 +107,7 @@ export function HungarianDance() {
       hungarianGirl3.anchor.set(0.5, 0.5);
       hungarianGirl3.rotation = 45 * (Math.PI / 180);
       hungarianGirl3.position.set(app.renderer.width / 2, app.renderer.height / 2);
-      hungarianGirl3.animationSpeed = 1;
+      hungarianGirl3.animationSpeed = 0.5;
       hungarianGirl3.loop = true;
       hungarianGirl3.gotoAndPlay(20);
 
@@ -116,7 +116,7 @@ export function HungarianDance() {
       hungarianGirl4.anchor.set(0.5, 0.5);
       hungarianGirl4.rotation = 33 * (Math.PI / 180);
       hungarianGirl4.position.set(app.renderer.width / 2, app.renderer.height / 2);
-      hungarianGirl4.animationSpeed = 1;
+      hungarianGirl4.animationSpeed = 0.5;
       hungarianGirl4.loop = true;
       hungarianGirl4.gotoAndPlay(16);
 
@@ -125,7 +125,7 @@ export function HungarianDance() {
       hungarianGirl5.anchor.set(0.5, 0.5);
       hungarianGirl5.rotation = 21 * (Math.PI / 180);
       hungarianGirl5.position.set(app.renderer.width / 2, app.renderer.height / 2);
-      hungarianGirl5.animationSpeed = 1;
+      hungarianGirl5.animationSpeed = 0.5;
       hungarianGirl5.loop = true;
       hungarianGirl5.gotoAndPlay(12);
 
@@ -134,7 +134,7 @@ export function HungarianDance() {
       hungarianGirl6.anchor.set(0.5, 0.5);
       hungarianGirl6.rotation = 9 * (Math.PI / 180);
       hungarianGirl6.position.set(app.renderer.width / 2, app.renderer.height / 2);
-      hungarianGirl6.animationSpeed = 1;
+      hungarianGirl6.animationSpeed = 0.5;
       hungarianGirl6.loop = true;
       hungarianGirl6.gotoAndPlay(8);
 
@@ -143,7 +143,7 @@ export function HungarianDance() {
       hungarianGirl7.anchor.set(0.5, 0.5);
       hungarianGirl7.rotation = -4 * (Math.PI / 180);
       hungarianGirl7.position.set(app.renderer.width / 2, app.renderer.height / 2);
-      hungarianGirl7.animationSpeed = 1;
+      hungarianGirl7.animationSpeed = 0.5;
       hungarianGirl7.loop = true;
       hungarianGirl7.gotoAndPlay(4);
 
@@ -152,7 +152,7 @@ export function HungarianDance() {
       hungarianGirl8.anchor.set(0.5, 0.5);
       hungarianGirl8.rotation = -16 * (Math.PI / 180);
       hungarianGirl8.position.set(app.renderer.width / 2, app.renderer.height / 2);
-      hungarianGirl8.animationSpeed = 1;
+      hungarianGirl8.animationSpeed = 0.5;
       hungarianGirl8.loop = true;
       hungarianGirl8.play();
 
@@ -193,6 +193,7 @@ export function HungarianDance() {
       appRef.current?.destroy(true);
       appRef.current = null;
       animatedSpritesRef.current = [];
+      PIXI.Assets.reset();
     };
   }, []);
 
