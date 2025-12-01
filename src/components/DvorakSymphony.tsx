@@ -56,26 +56,26 @@ export function DvorakSymphony() {
       const manConductorTextures = manConductorFrames.map((frame) => PIXI.Assets.get(frame)!);
 
       const landscape = new PIXI.AnimatedSprite(landscapeTextures);
-      landscape.setSize(632 * 0.85, 400 * 0.85);
-      landscape.position.set(app.renderer.width - 632 * 0.85 - 63, 130);
+      landscape.setSize(537, 340);
+      landscape.position.set(app.renderer.width - 537 - 63, 130);
       landscape.animationSpeed = 0.5;
       landscape.loop = true;
       landscape.play();
 
       const frame = new PIXI.Sprite(frameTexture);
-      frame.setSize(756 * 0.85, 756 * 0.85);
-      frame.position.set(app.renderer.width - 756 * 0.85 + 1, -21);
+      frame.setSize(643, 643);
+      frame.position.set(app.renderer.width - 643 + 1, -21);
 
       const runningMan = new PIXI.AnimatedSprite(runningManTextures);
       runningMan.setSize(231, 277);
-      runningMan.position.set(app.renderer.width - 180, 164);
+      runningMan.position.set(app.renderer.width - 174, 164);
       runningMan.scale.x = -1;
       runningMan.animationSpeed = 0.5;
       runningMan.loop = true;
       runningMan.play();
 
       const oxTrack = new PIXI.AnimatedSprite(oxTrackTextures);
-      oxTrack.setSize(773, 399);
+      oxTrack.setSize(773, 388);
       oxTrack.position.set(app.renderer.width - 773 - 490, 41);
       oxTrack.animationSpeed = 0.5;
       oxTrack.loop = true;
