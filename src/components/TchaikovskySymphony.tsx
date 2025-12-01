@@ -109,6 +109,8 @@ export function TchaikovskySymphony() {
       violin.loop = true;
       violin.play();
 
+      const offset = 3;
+
       const womanConductor1 = new PIXI.AnimatedSprite(womanConductorTextures);
       womanConductor1.setSize(1080, 1872);
       womanConductor1.scale.set(0.2);
@@ -125,7 +127,7 @@ export function TchaikovskySymphony() {
       womanConductor2.position.set(214, app.renderer.height + 150);
       womanConductor2.animationSpeed = 0.5;
       womanConductor2.loop = true;
-      womanConductor2.gotoAndPlay(1);
+      womanConductor2.gotoAndPlay((1 * offset) % womanConductorFrames.length);
 
       const womanConductor3 = new PIXI.AnimatedSprite(womanConductorTextures);
       womanConductor3.setSize(1080, 1872);
@@ -134,7 +136,7 @@ export function TchaikovskySymphony() {
       womanConductor3.position.set(310, app.renderer.height + 157);
       womanConductor3.animationSpeed = 0.5;
       womanConductor3.loop = true;
-      womanConductor3.gotoAndPlay(2);
+      womanConductor3.gotoAndPlay((2 * offset) % womanConductorFrames.length);
 
       const womanConductor4 = new PIXI.AnimatedSprite(womanConductorTextures);
       womanConductor4.setSize(1080, 1872);
@@ -143,7 +145,7 @@ export function TchaikovskySymphony() {
       womanConductor4.position.set(407, app.renderer.height + 167);
       womanConductor4.animationSpeed = 0.5;
       womanConductor4.loop = true;
-      womanConductor4.gotoAndPlay(3);
+      womanConductor4.gotoAndPlay((3 * offset) % womanConductorFrames.length);
 
       const womanConductor5 = new PIXI.AnimatedSprite(womanConductorTextures);
       womanConductor5.setSize(1080, 1872);
@@ -152,7 +154,7 @@ export function TchaikovskySymphony() {
       womanConductor5.position.set(503, app.renderer.height + 188);
       womanConductor5.animationSpeed = 0.5;
       womanConductor5.loop = true;
-      womanConductor5.gotoAndPlay(4);
+      womanConductor5.gotoAndPlay((4 * offset) % womanConductorFrames.length);
 
       const womanConductor6 = new PIXI.AnimatedSprite(womanConductorTextures);
       womanConductor6.setSize(1080, 1872);
@@ -161,7 +163,7 @@ export function TchaikovskySymphony() {
       womanConductor6.position.set(600, app.renderer.height + 209);
       womanConductor6.animationSpeed = 0.5;
       womanConductor6.loop = true;
-      womanConductor6.gotoAndPlay(5);
+      womanConductor6.gotoAndPlay((5 * offset) % womanConductorFrames.length);
 
       const womanConductor7 = new PIXI.AnimatedSprite(womanConductorTextures);
       womanConductor7.setSize(1080, 1872);
@@ -170,7 +172,7 @@ export function TchaikovskySymphony() {
       womanConductor7.position.set(710, app.renderer.height + 220);
       womanConductor7.animationSpeed = 0.5;
       womanConductor7.loop = true;
-      womanConductor7.gotoAndPlay(6);
+      womanConductor7.gotoAndPlay((6 * offset) % womanConductorFrames.length);
 
       const womanConductor8 = new PIXI.AnimatedSprite(womanConductorTextures);
       womanConductor8.setSize(1080, 1872);
@@ -179,7 +181,7 @@ export function TchaikovskySymphony() {
       womanConductor8.position.set(820, app.renderer.height + 235);
       womanConductor8.animationSpeed = 0.5;
       womanConductor8.loop = true;
-      womanConductor8.gotoAndPlay(7);
+      womanConductor8.gotoAndPlay((7 * offset) % womanConductorFrames.length);
 
       const womanConductor9 = new PIXI.AnimatedSprite(womanConductorTextures);
       womanConductor9.setSize(1080, 1872);
@@ -188,7 +190,7 @@ export function TchaikovskySymphony() {
       womanConductor9.position.set(930, app.renderer.height + 250);
       womanConductor9.animationSpeed = 0.5;
       womanConductor9.loop = true;
-      womanConductor9.gotoAndPlay(8);
+      womanConductor9.gotoAndPlay((8 * offset) % womanConductorFrames.length);
 
       const womanConductor10 = new PIXI.AnimatedSprite(womanConductorTextures);
       womanConductor10.setSize(1080, 1872);
@@ -197,7 +199,7 @@ export function TchaikovskySymphony() {
       womanConductor10.position.set(1040, app.renderer.height + 264);
       womanConductor10.animationSpeed = 0.5;
       womanConductor10.loop = true;
-      womanConductor10.gotoAndPlay(9);
+      womanConductor10.gotoAndPlay((9 * offset) % womanConductorFrames.length);
 
       container.addChild(tchai);
       container.addChild(hearts);
