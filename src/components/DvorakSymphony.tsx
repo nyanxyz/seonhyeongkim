@@ -132,7 +132,7 @@ export function DvorakSymphony() {
       manConductor5.position.set(-80 * 0.9, app.renderer.height + 155 * 0.9);
       manConductor5.animationSpeed = 0.5;
       manConductor5.loop = true;
-      manConductor5.play();
+      manConductor5.gotoAndPlay(12);
 
       const manConductor6 = new PIXI.AnimatedSprite(manConductorTextures);
       manConductor6.setSize(1338 * 0.9, 730 * 0.9);
@@ -140,7 +140,7 @@ export function DvorakSymphony() {
       manConductor6.position.set(50 * 0.9, app.renderer.height + 134 * 0.9);
       manConductor6.animationSpeed = 0.5;
       manConductor6.loop = true;
-      manConductor6.play();
+      manConductor6.gotoAndPlay(15);
 
       const manConductor7 = new PIXI.AnimatedSprite(manConductorTextures);
       manConductor7.setSize(1200 * 0.9, 650 * 0.9);
@@ -148,7 +148,7 @@ export function DvorakSymphony() {
       manConductor7.position.set(200 * 0.9, app.renderer.height + 115 * 0.9);
       manConductor7.animationSpeed = 0.5;
       manConductor7.loop = true;
-      manConductor7.play();
+      manConductor7.gotoAndPlay(18);
 
       const manConductor8 = new PIXI.AnimatedSprite(manConductorTextures);
       manConductor8.setSize(1080 * 0.9, 580 * 0.9);
@@ -156,7 +156,7 @@ export function DvorakSymphony() {
       manConductor8.position.set(320 * 0.9, app.renderer.height + 98 * 0.9);
       manConductor8.animationSpeed = 0.5;
       manConductor8.loop = true;
-      manConductor8.play();
+      manConductor8.gotoAndPlay(21);
 
       const manConductor9 = new PIXI.AnimatedSprite(manConductorTextures);
       manConductor9.setSize(365 * 0.9, 200 * 0.9);
