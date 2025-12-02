@@ -11,17 +11,18 @@ import {
 import { calculateAnimationSpeed, calculateAudioRate } from "../utils/rate";
 import { AudioPlayer } from "./AudioPlayer";
 import { BPMSlider } from "./BPMSlider";
-import { BpmTimer, type BpmTimerHandle } from "./BPMTimer";
+import { BpmTimer } from "./BPMTimer";
 
 export function DvorakSymphony() {
-  const timerRef = useRef<BpmTimerHandle>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const appRef = useRef<PIXI.Application | null>(null);
   const animatedSpritesRef = useRef<PIXI.AnimatedSprite[]>([]);
-  const firstLoopRef = useRef(true);
+  const lastCurrentTimeRef = useRef(0);
 
   const [initialized, setInitialized] = useState(false);
   const [bpm, setBpm] = useState(90);
+  const [loopCount, setLoopCount] = useState(0);
+  const [audioStarted, setAudioStarted] = useState(false);
 
   const audioRate = calculateAudioRate(bpm);
   const gradientOpacity = Math.min(Math.max((bpm - 20) / 200, 0), 1);
@@ -237,15 +238,13 @@ export function DvorakSymphony() {
           src="/dvorak_symphony.mp3"
           playbackRate={audioRate}
           onTimeUpdate={(currentTime) => {
-            if (currentTime < 1 && !firstLoopRef.current) {
-              timerRef.current?.reset();
+            if (currentTime < 1 && lastCurrentTimeRef.current >= 1) {
+              setLoopCount((count) => count + 1);
             }
-            if (currentTime >= 1) {
-              firstLoopRef.current = false;
-            }
+            lastCurrentTimeRef.current = currentTime;
           }}
           onPlay={() => {
-            timerRef.current?.start();
+            setAudioStarted(true);
           }}
         />
       )}
@@ -259,7 +258,7 @@ export function DvorakSymphony() {
           />
 
           <div className="absolute top-[24px] left-[35px] font-antarctica font-bold text-[32px] text-black">
-            <BpmTimer ref={timerRef} bpm={bpm} />
+            <BpmTimer key={loopCount} bpm={bpm} paused={!audioStarted} />
           </div>
           <div className="absolute top-[24px] left-0 right-0 mx-auto w-fit font-antarctica font-bold text-[32px] text-black">
             SYMPHONY NO.7 MVT.3

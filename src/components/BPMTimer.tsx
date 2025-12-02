@@ -1,12 +1,8 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export interface BpmTimerHandle {
-  reset: () => void;
-  start: () => void;
-}
-
-interface BpmTimerProps {
+interface Props {
   bpm: number;
+  paused?: boolean;
 }
 
 const formatTime = (time: number) => {
@@ -38,30 +34,25 @@ const getSpeedFactor = (rawBpm: number) => {
   return 2 + curved * (6 - 2);
 };
 
-export const BpmTimer = forwardRef<BpmTimerHandle, BpmTimerProps>(({ bpm }, ref) => {
+export function BpmTimer({ bpm, paused = false }: Props) {
   const [elapsedSec, setElapsedSec] = useState(0);
   const speedRef = useRef(getSpeedFactor(bpm));
-  const runningRef = useRef(false);
+  const pausedRef = useRef(paused);
 
   useEffect(() => {
     speedRef.current = getSpeedFactor(bpm);
   }, [bpm]);
 
-  useImperativeHandle(ref, () => ({
-    reset() {
-      setElapsedSec(0);
-    },
-    start() {
-      runningRef.current = true;
-    },
-  }));
+  useEffect(() => {
+    pausedRef.current = paused;
+  }, [paused]);
 
   useEffect(() => {
     let frameId: number;
     let prevTime: number | null = null;
 
     const tick = (now: number) => {
-      if (!runningRef.current) {
+      if (pausedRef.current) {
         prevTime = now;
         frameId = requestAnimationFrame(tick);
         return;
@@ -84,4 +75,4 @@ export const BpmTimer = forwardRef<BpmTimerHandle, BpmTimerProps>(({ bpm }, ref)
   }, []);
 
   return <>{formatTime(elapsedSec)}</>;
-});
+}
