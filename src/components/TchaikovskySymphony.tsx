@@ -95,12 +95,33 @@ export function TchaikovskySymphony() {
       clock.loop = true;
       clock.play();
 
-      const runner = new PIXI.AnimatedSprite(runnerTextures);
-      runner.setSize(469, 647);
-      runner.position.set(0, 85);
-      runner.animationSpeed = 0.5;
-      runner.loop = true;
-      runner.play();
+      const runner1 = new PIXI.AnimatedSprite(runnerTextures);
+      runner1.setSize(618, 924);
+      runner1.position.set(-20, 10);
+      runner1.animationSpeed = 0.5;
+      runner1.loop = true;
+      runner1.play();
+
+      const runner2 = new PIXI.AnimatedSprite(runnerTextures);
+      runner2.setSize(618, 924);
+      runner2.position.set(-20, 10);
+      runner2.animationSpeed = 0.5;
+      runner2.loop = true;
+      runner2.gotoAndPlay(25);
+
+      const runner3 = new PIXI.AnimatedSprite(runnerTextures);
+      runner3.setSize(618, 924);
+      runner3.position.set(-20, 10);
+      runner3.animationSpeed = 0.5;
+      runner3.loop = true;
+      runner3.gotoAndPlay(50);
+
+      const runner4 = new PIXI.AnimatedSprite(runnerTextures);
+      runner4.setSize(618, 924);
+      runner4.position.set(-20, 10);
+      runner4.animationSpeed = 0.5;
+      runner4.loop = true;
+      runner4.gotoAndPlay(75);
 
       const violin = new PIXI.AnimatedSprite(violinTextures);
       violin.setSize(721, 413);
@@ -206,7 +227,10 @@ export function TchaikovskySymphony() {
       container.addChild(trumpetMan);
       container.addChild(track);
       container.addChild(clock);
-      container.addChild(runner);
+      container.addChild(runner1);
+      container.addChild(runner2);
+      container.addChild(runner3);
+      container.addChild(runner4);
       container.addChild(violin);
       container.addChild(womanConductor1);
       container.addChild(womanConductor2);
@@ -225,7 +249,10 @@ export function TchaikovskySymphony() {
         hearts,
         trumpetMan,
         clock,
-        runner,
+        runner1,
+        runner2,
+        runner3,
+        runner4,
         violin,
         womanConductor1,
         womanConductor2,

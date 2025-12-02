@@ -54,7 +54,7 @@ export const clockFrames = Array.from({ length: 72 }, (_, i) => {
 
 export const runnerFrames = Array.from({ length: 100 }, (_, i) => {
   const frameNumber = i.toString().padStart(5, "0");
-  return `/runner/runner.${frameNumber}.png`;
+  return `/runner/runner_adjusted.${frameNumber}.png`;
 });
 
 export const violinFrames = Array.from({ length: 25 }, (_, i) => {
