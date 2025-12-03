@@ -106,7 +106,7 @@ export function DvorakSymphony() {
       const stopwatch = new PIXI.AnimatedSprite(stopwatchTextures);
       stopwatch.setSize(349, 300);
       stopwatch.anchor.set(1, 0);
-      stopwatch.position.set(app.renderer.width - 55, 632);
+      stopwatch.position.set(app.renderer.width - 55, 613);
       stopwatch.animationSpeed = 0.5;
       stopwatch.loop = true;
       stopwatch.play();
