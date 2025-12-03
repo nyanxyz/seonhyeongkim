@@ -74,9 +74,9 @@ export const landscapeFrames = Array.from({ length: 150 }, (_, i) => {
   return `/landscape/landscape${frameNumber}.png`;
 });
 
-export const oxTrackFrames = Array.from({ length: 120 }, (_, i) => {
-  const frameNumber = i.toString().padStart(5, "0");
-  return `/ox+track/ox+track.${frameNumber}.png`;
+export const oxFrames = Array.from({ length: 121 }, (_, i) => {
+  const frameNumber = i.toString().padStart(3, "0");
+  return `/ox/ox${frameNumber}.png`;
 });
 
 export const stopwatchFrames = Array.from({ length: 40 }, (_, i) => {

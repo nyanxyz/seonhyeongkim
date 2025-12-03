@@ -1,10 +1,9 @@
 import * as PIXI from "pixi.js";
 import { useEffect, useRef, useState } from "react";
 import {
-  clockFrames,
   landscapeFrames,
   manConductorFrames,
-  oxTrackFrames,
+  oxFrames,
   runningManFrames,
   stopwatchFrames,
 } from "../constants/frames";
@@ -41,62 +40,70 @@ export function DvorakSymphony() {
       app.stage.addChild(container);
 
       await PIXI.Assets.load(landscapeFrames);
-      await PIXI.Assets.load("/landscape/frame.png");
+      await PIXI.Assets.load("/frame/frame(top).png");
+      await PIXI.Assets.load("/frame/frame(bottom).png");
       await PIXI.Assets.load(runningManFrames);
-      await PIXI.Assets.load(oxTrackFrames);
+      await PIXI.Assets.load(oxFrames);
+      await PIXI.Assets.load("/track/track(left).png");
+      await PIXI.Assets.load("/track/track(right).png");
       await PIXI.Assets.load(stopwatchFrames);
-      await PIXI.Assets.load(clockFrames);
       await PIXI.Assets.load(manConductorFrames);
 
       const landscapeTextures = landscapeFrames.map((frame) => PIXI.Assets.get(frame)!);
-      const frameTexture = PIXI.Assets.get("/landscape/frame.png")!;
+      const frameTopTexture = PIXI.Assets.get("/frame/frame(top).png")!;
+      const frameBottomTexture = PIXI.Assets.get("/frame/frame(bottom).png")!;
       const runningManTextures = runningManFrames.map((frame) => PIXI.Assets.get(frame)!);
-      const oxTrackTextures = oxTrackFrames.map((frame) => PIXI.Assets.get(frame)!);
+      const oxTextures = oxFrames.map((frame) => PIXI.Assets.get(frame)!);
+      const trackLeftTexture = PIXI.Assets.get("/track/track(left).png")!;
+      const trackRightTexture = PIXI.Assets.get("/track/track(right).png")!;
       const stopwatchTextures = stopwatchFrames.map((frame) => PIXI.Assets.get(frame)!);
-      const clockTextures = clockFrames.map((frame) => PIXI.Assets.get(frame)!);
       const manConductorTextures = manConductorFrames.map((frame) => PIXI.Assets.get(frame)!);
 
       const landscape = new PIXI.AnimatedSprite(landscapeTextures);
-      landscape.setSize(537, 340);
-      landscape.position.set(app.renderer.width - 537 - 63, 130);
+      landscape.setSize(624, 395);
+      landscape.position.set(app.renderer.width - 624 - 70, 142);
       landscape.animationSpeed = 0.5;
       landscape.loop = true;
       landscape.play();
 
-      const frame = new PIXI.Sprite(frameTexture);
-      frame.setSize(643, 643);
-      frame.position.set(app.renderer.width - 643 + 1, -21);
+      const frameTop = new PIXI.Sprite(frameTopTexture);
+      frameTop.setSize(756, 570);
+      frameTop.position.set(app.renderer.width - 756 + 2, 51);
+
+      const frameBottom = new PIXI.Sprite(frameBottomTexture);
+      frameBottom.setSize(756, 570);
+      frameBottom.position.set(app.renderer.width - 756 + 2, 51);
 
       const runningMan = new PIXI.AnimatedSprite(runningManTextures);
-      runningMan.setSize(231, 277);
-      runningMan.position.set(app.renderer.width - 174, 164);
+      runningMan.setSize(270, 324);
+      runningMan.position.set(app.renderer.width - 206, 180);
       runningMan.scale.x = -1;
       runningMan.animationSpeed = 0.5;
       runningMan.loop = true;
       runningMan.play();
 
-      const oxTrack = new PIXI.AnimatedSprite(oxTrackTextures);
-      oxTrack.setSize(773, 388);
-      oxTrack.position.set(app.renderer.width - 773 - 490, 41);
-      oxTrack.animationSpeed = 0.5;
-      oxTrack.loop = true;
-      oxTrack.play();
+      const ox = new PIXI.AnimatedSprite(oxTextures);
+      ox.setSize(713, 390);
+      ox.position.set(app.renderer.width - 713 - 563, 122);
+      ox.animationSpeed = 0.5;
+      ox.loop = true;
+      ox.play();
+
+      const oxTrackLeft = new PIXI.Sprite(trackLeftTexture);
+      oxTrackLeft.setSize(321, 491);
+      oxTrackLeft.position.set(app.renderer.width - 321 - 751, 45);
+
+      const oxTrackRight = new PIXI.Sprite(trackRightTexture);
+      oxTrackRight.setSize(321, 491);
+      oxTrackRight.position.set(app.renderer.width - 321 - 751, 45);
 
       const stopwatch = new PIXI.AnimatedSprite(stopwatchTextures);
       stopwatch.setSize(349, 300);
-      stopwatch.anchor.set(1, 1);
-      stopwatch.position.set(app.renderer.width - 55, app.renderer.height - 25);
+      stopwatch.anchor.set(1, 0);
+      stopwatch.position.set(app.renderer.width - 55, 577);
       stopwatch.animationSpeed = 0.5;
       stopwatch.loop = true;
       stopwatch.play();
-
-      const clock = new PIXI.AnimatedSprite(clockTextures);
-      clock.setSize(230, 310);
-      clock.anchor.set(1, 1);
-      clock.position.set(app.renderer.width - 428, app.renderer.height - 20);
-      clock.animationSpeed = 0.5;
-      clock.loop = true;
-      clock.play();
 
       const manConductor1 = new PIXI.AnimatedSprite(manConductorTextures);
       manConductor1.setSize(2199 * 0.9, 1203 * 0.9);
@@ -179,11 +186,13 @@ export function DvorakSymphony() {
       manConductor10.gotoAndPlay(27);
 
       container.addChild(landscape);
-      container.addChild(frame);
+      container.addChild(frameTop);
+      container.addChild(frameBottom);
       container.addChild(runningMan);
-      container.addChild(oxTrack);
+      container.addChild(oxTrackRight);
+      container.addChild(ox);
+      container.addChild(oxTrackLeft);
       container.addChild(stopwatch);
-      container.addChild(clock);
       container.addChild(manConductor10);
       container.addChild(manConductor9);
       container.addChild(manConductor8);
@@ -199,9 +208,8 @@ export function DvorakSymphony() {
       animatedSpritesRef.current = [
         runningMan,
         landscape,
-        oxTrack,
+        ox,
         stopwatch,
-        clock,
         manConductor1,
         manConductor2,
         manConductor3,
