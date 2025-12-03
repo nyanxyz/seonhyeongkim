@@ -1,11 +1,13 @@
 import * as PIXI from "pixi.js";
 import { useEffect, useRef, useState } from "react";
 import {
+  birdFrames,
   landscapeFrames,
   manConductorFrames,
   oxFrames,
   runningManFrames,
   stopwatchFrames,
+  tubaFrames,
 } from "../constants/frames";
 import { calculateAnimationSpeed, calculateAudioRate } from "../utils/rate";
 import { AudioPlayer } from "./AudioPlayer";
@@ -47,6 +49,8 @@ export function DvorakSymphony() {
       await PIXI.Assets.load("/track/track(left).png");
       await PIXI.Assets.load("/track/track(right).png");
       await PIXI.Assets.load(stopwatchFrames);
+      await PIXI.Assets.load(tubaFrames);
+      await PIXI.Assets.load(birdFrames);
       await PIXI.Assets.load(manConductorFrames);
 
       const landscapeTextures = landscapeFrames.map((frame) => PIXI.Assets.get(frame)!);
@@ -57,6 +61,8 @@ export function DvorakSymphony() {
       const trackLeftTexture = PIXI.Assets.get("/track/track(left).png")!;
       const trackRightTexture = PIXI.Assets.get("/track/track(right).png")!;
       const stopwatchTextures = stopwatchFrames.map((frame) => PIXI.Assets.get(frame)!);
+      const tubaTextures = tubaFrames.map((frame) => PIXI.Assets.get(frame)!);
+      const birdTextures = birdFrames.map((frame) => PIXI.Assets.get(frame)!);
       const manConductorTextures = manConductorFrames.map((frame) => PIXI.Assets.get(frame)!);
 
       const landscape = new PIXI.AnimatedSprite(landscapeTextures);
@@ -84,7 +90,7 @@ export function DvorakSymphony() {
 
       const ox = new PIXI.AnimatedSprite(oxTextures);
       ox.setSize(713, 390);
-      ox.position.set(app.renderer.width - 713 - 563, 122);
+      ox.position.set(app.renderer.width - 713 - 563, 72);
       ox.animationSpeed = 0.5;
       ox.loop = true;
       ox.play();
@@ -100,99 +106,148 @@ export function DvorakSymphony() {
       const stopwatch = new PIXI.AnimatedSprite(stopwatchTextures);
       stopwatch.setSize(349, 300);
       stopwatch.anchor.set(1, 0);
-      stopwatch.position.set(app.renderer.width - 55, 577);
+      stopwatch.position.set(app.renderer.width - 55, 632);
       stopwatch.animationSpeed = 0.5;
       stopwatch.loop = true;
       stopwatch.play();
 
+      const tuba = new PIXI.AnimatedSprite(tubaTextures);
+      tuba.setSize(704, 360);
+      tuba.position.set(app.renderer.width - 704 - 359, 544);
+      tuba.animationSpeed = 0.5;
+      tuba.loop = true;
+      tuba.play();
+
+      const bird1 = new PIXI.AnimatedSprite(birdTextures);
+      bird1.setSize(1538, 876);
+      bird1.position.set(app.renderer.width - 1538, 0);
+      bird1.animationSpeed = 0.5;
+      bird1.loop = true;
+      bird1.play();
+
+      const bird2 = new PIXI.AnimatedSprite(birdTextures);
+      bird2.setSize(1538, 876);
+      bird2.position.set(app.renderer.width - 1538, 0);
+      bird2.animationSpeed = 0.5;
+      bird2.loop = true;
+      bird2.gotoAndPlay(1);
+
+      const bird3 = new PIXI.AnimatedSprite(birdTextures);
+      bird3.setSize(1538, 876);
+      bird3.position.set(app.renderer.width - 1538, 0);
+      bird3.animationSpeed = 0.5;
+      bird3.loop = true;
+      bird3.gotoAndPlay(2);
+
+      const bird4 = new PIXI.AnimatedSprite(birdTextures);
+      bird4.setSize(1538, 876);
+      bird4.position.set(app.renderer.width - 1538, 0);
+      bird4.animationSpeed = 0.5;
+      bird4.loop = true;
+      bird4.gotoAndPlay(5);
+
+      const bird5 = new PIXI.AnimatedSprite(birdTextures);
+      bird5.setSize(1538, 876);
+      bird5.position.set(app.renderer.width - 1538, 0);
+      bird5.animationSpeed = 0.5;
+      bird5.loop = true;
+      bird5.gotoAndPlay(9);
+
       const manConductor1 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor1.setSize(2199 * 0.9, 1203 * 0.9);
+      manConductor1.setSize(2199, 1203);
       manConductor1.anchor.set(0, 1);
-      manConductor1.position.set(-642 * 0.9, app.renderer.height + 249 * 0.9);
+      manConductor1.position.set(-642, app.renderer.height + 249);
       manConductor1.animationSpeed = 0.5;
       manConductor1.loop = true;
       manConductor1.play();
 
       const manConductor2 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor2.setSize(2014 * 0.9, 1102 * 0.9);
+      manConductor2.setSize(2014, 1102);
       manConductor2.anchor.set(0, 1);
-      manConductor2.position.set(-503 * 0.9, app.renderer.height + 229 * 0.9);
+      manConductor2.position.set(-503, app.renderer.height + 229);
       manConductor2.animationSpeed = 0.5;
       manConductor2.loop = true;
       manConductor2.gotoAndPlay(3);
 
       const manConductor3 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor3.setSize(1807 * 0.9, 989 * 0.9);
+      manConductor3.setSize(1807, 989);
       manConductor3.anchor.set(0, 1);
-      manConductor3.position.set(-352 * 0.9, app.renderer.height + 204 * 0.9);
+      manConductor3.position.set(-352, app.renderer.height + 204);
       manConductor3.animationSpeed = 0.5;
       manConductor3.loop = true;
       manConductor3.gotoAndPlay(6);
 
       const manConductor4 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor4.setSize(1624 * 0.9, 889 * 0.9);
+      manConductor4.setSize(1624, 889);
       manConductor4.anchor.set(0, 1);
-      manConductor4.position.set(-216 * 0.9, app.renderer.height + 177 * 0.9);
+      manConductor4.position.set(-216, app.renderer.height + 177);
       manConductor4.animationSpeed = 0.5;
       manConductor4.loop = true;
       manConductor4.gotoAndPlay(9);
 
       const manConductor5 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor5.setSize(1480 * 0.9, 810 * 0.9);
+      manConductor5.setSize(1480, 810);
       manConductor5.anchor.set(0, 1);
-      manConductor5.position.set(-80 * 0.9, app.renderer.height + 155 * 0.9);
+      manConductor5.position.set(-80, app.renderer.height + 155);
       manConductor5.animationSpeed = 0.5;
       manConductor5.loop = true;
       manConductor5.gotoAndPlay(12);
 
       const manConductor6 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor6.setSize(1338 * 0.9, 730 * 0.9);
+      manConductor6.setSize(1338, 730);
       manConductor6.anchor.set(0, 1);
-      manConductor6.position.set(50 * 0.9, app.renderer.height + 134 * 0.9);
+      manConductor6.position.set(50, app.renderer.height + 134);
       manConductor6.animationSpeed = 0.5;
       manConductor6.loop = true;
       manConductor6.gotoAndPlay(15);
 
       const manConductor7 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor7.setSize(1200 * 0.9, 650 * 0.9);
+      manConductor7.setSize(1200, 650);
       manConductor7.anchor.set(0, 1);
-      manConductor7.position.set(200 * 0.9, app.renderer.height + 115 * 0.9);
+      manConductor7.position.set(200, app.renderer.height + 115);
       manConductor7.animationSpeed = 0.5;
       manConductor7.loop = true;
       manConductor7.gotoAndPlay(18);
 
       const manConductor8 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor8.setSize(1080 * 0.9, 580 * 0.9);
+      manConductor8.setSize(1080, 580);
       manConductor8.anchor.set(0, 1);
-      manConductor8.position.set(320 * 0.9, app.renderer.height + 98 * 0.9);
+      manConductor8.position.set(320, app.renderer.height + 98);
       manConductor8.animationSpeed = 0.5;
       manConductor8.loop = true;
       manConductor8.gotoAndPlay(21);
 
       const manConductor9 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor9.setSize(365 * 0.9, 200 * 0.9);
+      manConductor9.setSize(365, 200);
       manConductor9.anchor.set(0, 1);
-      manConductor9.position.set(744 * 0.9, app.renderer.height + 35 * 0.9);
+      manConductor9.position.set(744, app.renderer.height + 35);
       manConductor9.animationSpeed = 0.5;
       manConductor9.loop = true;
       manConductor9.gotoAndPlay(24);
 
       const manConductor10 = new PIXI.AnimatedSprite(manConductorTextures);
-      manConductor10.setSize(171 * 0.9, 94 * 0.9);
+      manConductor10.setSize(171, 94);
       manConductor10.anchor.set(0, 1);
-      manConductor10.position.set(891 * 0.9, app.renderer.height + 17 * 0.9);
+      manConductor10.position.set(891, app.renderer.height + 17);
       manConductor10.animationSpeed = 0.5;
       manConductor10.loop = true;
       manConductor10.gotoAndPlay(27);
 
       container.addChild(landscape);
-      container.addChild(frameTop);
+
       container.addChild(frameBottom);
       container.addChild(runningMan);
       container.addChild(oxTrackRight);
       container.addChild(ox);
-      container.addChild(oxTrackLeft);
       container.addChild(stopwatch);
+      container.addChild(bird1);
+      container.addChild(bird2);
+      container.addChild(bird3);
+      container.addChild(bird4);
+      container.addChild(bird5);
+      container.addChild(oxTrackLeft);
+      container.addChild(frameTop);
+      container.addChild(tuba);
       container.addChild(manConductor10);
       container.addChild(manConductor9);
       container.addChild(manConductor8);
@@ -210,6 +265,12 @@ export function DvorakSymphony() {
         landscape,
         ox,
         stopwatch,
+        tuba,
+        bird1,
+        bird2,
+        bird3,
+        bird4,
+        bird5,
         manConductor1,
         manConductor2,
         manConductor3,

@@ -83,3 +83,13 @@ export const stopwatchFrames = Array.from({ length: 40 }, (_, i) => {
   const frameNumber = i.toString().padStart(2, "0");
   return `/stopwatch/stopwatch${frameNumber}.png`;
 });
+
+export const birdFrames = Array.from({ length: 200 }, (_, i) => {
+  const frameNumber = i.toString().padStart(5, "0");
+  return `/bird/bird.${frameNumber}.png`;
+});
+
+export const tubaFrames = Array.from({ length: 94 }, (_, i) => {
+  const frameNumber = i.toString().padStart(5, "0");
+  return `/tuba/tuba.${frameNumber}.png`;
+});
