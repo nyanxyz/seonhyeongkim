@@ -49,7 +49,7 @@ export function BPMSlider({ value = 90, onValueChange }: Props) {
   }, [value]);
 
   return (
-    <div className="relative h-[96px] px-[36px] flex flex-col space-y-[8px] pt-[32px] bg-white">
+    <div className="relative px-[36px] flex flex-col space-y-[8px] pt-[32px] pb-[29px] bg-white">
       <Slider
         value={[value]}
         onValueChange={(val) => onValueChange?.(val[0])}
@@ -66,7 +66,7 @@ export function BPMSlider({ value = 90, onValueChange }: Props) {
         </SliderThumb>
       </Slider>
 
-      <div className="w-full flex justify-between font-antarctica font-bold italic text-[17px] px-[5px] text-black">
+      <div className="w-full flex justify-between font-antarctica font-bold italic text-[20px] px-[5px] text-black">
         <span>Largo</span>
         <span>Adagio</span>
         <span>Andante</span>
